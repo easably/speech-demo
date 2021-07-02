@@ -1,0 +1,7 @@
+{
+  "name": "speech-demo",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
