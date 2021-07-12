@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Speech recognition
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -14,7 +14,27 @@
   </ion-header>
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-item>
+      <ion-label position="stacked">Input text to recognize</ion-label>
+      <ion-input [(ngModel)]="inputValue"></ion-input>
+    </ion-item>
+    <ion-button (click) = "requestPermission()">Request permission</ion-button>
+    <ion-button (click) = "checkPermission()">Check permission</ion-button>
+    <ion-button (click) = "speak()">Start listening</ion-button>
+    <ion-button (click) = "stop()">Stop listening</ion-button>
+    <br>
+    <!-- <ion-item>
+      <ion-label position="stacked"></ion-label>
+      <ion-textarea
+      *ngif = isStop
+      disabled
+      readonly
+      value="Ionic enables developers to build performant, high-quality mobile apps.">
+      {{result}}
+    </ion-textarea>
+    </ion-item> -->
+    <p *ngIf = "isStop">{{inputString}}</p>
+    <p *ngIf = "isStop">{{result}}</p>
+    <p *ngIf = "isStop">{{recognized}}</p>
   </div>
 </ion-content>

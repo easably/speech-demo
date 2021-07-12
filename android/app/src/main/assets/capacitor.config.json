@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "speech-demo",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
