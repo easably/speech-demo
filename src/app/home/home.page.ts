@@ -32,7 +32,32 @@ export class HomePage{
 
   stop() {
     SpeechRecognition.stop()
-    let sourceText = this.inputValue; //TODO: put this into separate method
+    this.printResult();
+  }
+
+  requestPermission() {
+    SpeechRecognition.requestPermission().then((data) => {
+      //alert(JSON.stringify(data));
+    },(err)=> {
+      alert(JSON.stringify(err));
+    })
+  }
+
+  checkPermission() {
+    SpeechRecognition.hasPermission().then((perm) => {
+      if (perm.permission) {
+        alert('already have permission');
+      }
+      else {
+        alert('not have permission'); 
+      }
+    },(err) => {
+      alert(JSON.stringify(err));
+    })
+  }
+
+  private printResult(): void {
+    let sourceText = this.inputValue; 
     this.recognized = "";
     this.inputString = sourceText;
     let mark = 0;
@@ -56,27 +81,6 @@ export class HomePage{
      | formula: ${(((bestMark + (marksum - bestMark)/(this.text.length - 1)) / 2) * 100).toFixed(1)}%
      | formula2: ${(bestMark * 0.85 * 100 + 0.15 * (marksum - bestMark)/(this.text.length - 1) * 100).toFixed(1)}%`;
     this.isStop = true;
-  }
-
-  requestPermission() {
-    SpeechRecognition.requestPermission().then((data) => {
-      //alert(JSON.stringify(data));
-    },(err)=> {
-      alert(JSON.stringify(err));
-    })
-  }
-
-  checkPermission() {
-    SpeechRecognition.hasPermission().then((perm) => {
-      if (perm.permission) {
-        alert('already have permission');
-      }
-      else {
-        alert('not have permission'); 
-      }
-    },(err) => {
-      alert(JSON.stringify(err));
-    })
   }
 
   private calculateDistance(source:string, target:string): number { //method to calculate mark(Damerau-Levensthtein distance)
