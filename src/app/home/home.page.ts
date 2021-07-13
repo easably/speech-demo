@@ -27,12 +27,14 @@ export class HomePage{
       maxResults: 5,
     }).then((match) => {
       this.text = match.matches;
+      this.printResult();
+      this.stop()
     })
   }
 
   stop() {
     SpeechRecognition.stop()
-    this.printResult();
+    //this.printResult();
   }
 
   requestPermission() {
@@ -77,9 +79,14 @@ export class HomePage{
       index++;
     });
     this.result =  `recognized: ${this.text[bestIndex]} - best: ${(bestMark * 100).toFixed(1)}%
-     | average: ${((marksum / this.text.length) * 100).toFixed(1)}%
-     | formula: ${(((bestMark + (marksum - bestMark)/(this.text.length - 1)) / 2) * 100).toFixed(1)}%
-     | formula2: ${(bestMark * 0.85 * 100 + 0.15 * (marksum - bestMark)/(this.text.length - 1) * 100).toFixed(1)}%`;
+     | average: ${((marksum / this.text.length) * 100).toFixed(1)}%` +
+    //  | formula: ${(((bestMark + (marksum - bestMark)/(this.text.length - 1)) / 2) * 100).toFixed(1)}%
+    //  | formula2_1: ${(bestMark * 0.8 * 100 + 0.2 * (marksum - bestMark)/(this.text.length - 1) * 100).toFixed(1)}%
+    //  | formula2_2: ${(bestMark * 0.7 * 100 + 0.3 * (marksum - bestMark)/(this.text.length - 1) * 100).toFixed(1)}%
+    //  | formula2_3: ${(bestMark * 0.6 * 100 + 0.4 * (marksum - bestMark)/(this.text.length - 1) * 100).toFixed(1)}%
+    //  | formula2_4: ${(bestMark * 0.5 * 100 + 0.5 * (marksum - bestMark)/(this.text.length - 1) * 100).toFixed(1)}%
+     `| final mark = ${(bestMark * (0.8 - bestIndex * 0.1) * 100 + (1 - (bestMark * (0.8 - bestIndex * 0.1))) * (marksum - bestMark)/(this.text.length - 1) * 100).toFixed(1)}%`;
+    alert(this.result);
     this.isStop = true;
   }
 
