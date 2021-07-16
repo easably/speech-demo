@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 //import { SpeechRecognition } from "speech-recognition-t"; //my plugin in process
 // import :  npm install ../path/to/plugin (only local, haven't publush to npm yet)
 // npm uninstall plugin-name
-import { SpeechRecognition } from "@capacitor-community/speech-recognition";
+import { SpeechRecognition } from '@capacitor-community/speech-recognition';
 
 
 @Component({
@@ -15,6 +15,7 @@ export class HomePage{
   text:String[];
   inputString: string = ""
   result: string = "Nothing recognized";
+  partial: string = "";
   inputValue: string = "";
   recognized: string = "";
   isStop: boolean = true;
@@ -25,21 +26,23 @@ export class HomePage{
     SpeechRecognition.start({
       language:"en-US",
       maxResults: 5,
+      partialResults: true, 
     }).then((match) => {
       this.text = match.matches;
       this.printResult();
-      this.stop()
+      //this.stop()
     })
   }
 
   stop() {
     SpeechRecognition.stop()
-    //this.printResult();
+    this.printResult();
   }
 
   requestPermission() {
+    SpeechRecognition.available();
     SpeechRecognition.requestPermission().then((data) => {
-      //alert(JSON.stringify(data));
+      alert("permission granted");
     },(err)=> {
       alert(JSON.stringify(err));
     })
@@ -51,7 +54,7 @@ export class HomePage{
         alert('already have permission');
       }
       else {
-        alert('not have permission'); 
+        this.requestPermission()
       }
     },(err) => {
       alert(JSON.stringify(err));
@@ -78,14 +81,14 @@ export class HomePage{
       }
       index++;
     });
-    this.result =  `recognized: ${this.text[bestIndex]} - best: ${(bestMark * 100).toFixed(1)}%
-     | average: ${((marksum / this.text.length) * 100).toFixed(1)}%` +
-    //  | formula: ${(((bestMark + (marksum - bestMark)/(this.text.length - 1)) / 2) * 100).toFixed(1)}%
-    //  | formula2_1: ${(bestMark * 0.8 * 100 + 0.2 * (marksum - bestMark)/(this.text.length - 1) * 100).toFixed(1)}%
-    //  | formula2_2: ${(bestMark * 0.7 * 100 + 0.3 * (marksum - bestMark)/(this.text.length - 1) * 100).toFixed(1)}%
-    //  | formula2_3: ${(bestMark * 0.6 * 100 + 0.4 * (marksum - bestMark)/(this.text.length - 1) * 100).toFixed(1)}%
-    //  | formula2_4: ${(bestMark * 0.5 * 100 + 0.5 * (marksum - bestMark)/(this.text.length - 1) * 100).toFixed(1)}%
-     `| final mark = ${(bestMark * (0.8 - bestIndex * 0.1) * 100 + (1 - (bestMark * (0.8 - bestIndex * 0.1))) * (marksum - bestMark)/(this.text.length - 1) * 100).toFixed(1)}%`;
+    // this.result =  `recognized: ${this.text[bestIndex]} - best: ${(bestMark * 100).toFixed(1)}%
+    //  | average: ${((marksum / this.text.length) * 100).toFixed(1)}%` +
+    //  `| final mark = ${(bestMark * (0.8 - bestIndex * 0.1) * 100 +  (bestMark * (0.2 + bestIndex * 0.1)) * (marksum - bestMark)/(this.text.length - 1) * 100).toFixed(1)}%`;
+    if (this.text.length != 1) {
+      this.result =  `recognized: ${this.text[bestIndex]} | mark = ${(bestMark * (0.8 - bestIndex * 0.1) * 100 +  (bestMark * (0.2 + bestIndex * 0.1)) * (marksum - bestMark)/(this.text.length - 1) * 100).toFixed(1)}%`;
+    } else {
+      this.result = `recognized ${this.text[0]} | mark ${bestMark}`;
+    }
     alert(this.result);
     this.isStop = true;
   }
