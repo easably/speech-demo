@@ -15,23 +15,28 @@ export class HomePage{
   text:String[];
   inputString: string = ""
   result: string = "Nothing recognized";
-  partial: string = "";
+  resultText: string = "Here would be your mark";
   inputValue: string = "";
   recognized: string = "";
   isStop: boolean = true;
+  mark: number = 0;
   constructor() {}
 
   speak() {
     this.isStop = false;
-    SpeechRecognition.start({
-      language:"en-US",
-      maxResults: 5,
-      partialResults: true, 
-    }).then((match) => {
-      this.text = match.matches;
-      this.printResult();
-      //this.stop()
-    })
+    if(SpeechRecognition.hasPermission()) {
+      SpeechRecognition.start({
+        language:"en-US",
+        maxResults: 5, 
+      }).then((match) => {
+        this.text = match.matches;
+        this.stop()
+      })
+    }
+    else {
+      this.requestPermission();
+      this.speak();
+    }
   }
 
   stop() {
@@ -39,26 +44,42 @@ export class HomePage{
     this.printResult();
   }
 
-  requestPermission() {
+  
+
+  private requestPermission() {
     SpeechRecognition.available();
     SpeechRecognition.requestPermission().then((data) => {
-      alert("permission granted");
+      console.log("permission granted");
     },(err)=> {
       alert(JSON.stringify(err));
     })
   }
 
-  checkPermission() {
-    SpeechRecognition.hasPermission().then((perm) => {
-      if (perm.permission) {
-        alert('already have permission');
-      }
-      else {
-        this.requestPermission()
-      }
-    },(err) => {
-      alert(JSON.stringify(err));
-    })
+  // private checkPermission() {
+  //   SpeechRecognition.hasPermission().then((perm) => {
+  //     if (perm.permission) {
+  //       console.log('already have permission');
+  //     }
+  //     else {
+  //       this.requestPermission()
+  //     }
+  //   },(err) => {
+  //     alert(JSON.stringify(err));
+  //   })
+  // }
+
+  private showMark() : void {
+    console.log(this.mark)
+    if(this.mark > 80) {
+      this.resultText = "Excellent";
+    }
+    else if(this.mark < 50) {
+      this.resultText = "Could be better, try again";
+    }
+    else {
+      this.resultText = "Good";
+    }
+    
   }
 
   private printResult(): void {
@@ -81,15 +102,14 @@ export class HomePage{
       }
       index++;
     });
-    // this.result =  `recognized: ${this.text[bestIndex]} - best: ${(bestMark * 100).toFixed(1)}%
-    //  | average: ${((marksum / this.text.length) * 100).toFixed(1)}%` +
-    //  `| final mark = ${(bestMark * (0.8 - bestIndex * 0.1) * 100 +  (bestMark * (0.2 + bestIndex * 0.1)) * (marksum - bestMark)/(this.text.length - 1) * 100).toFixed(1)}%`;
     if (this.text.length != 1) {
-      this.result =  `recognized: ${this.text[bestIndex]} | mark = ${(bestMark * (0.8 - bestIndex * 0.1) * 100 +  (bestMark * (0.2 + bestIndex * 0.1)) * (marksum - bestMark)/(this.text.length - 1) * 100).toFixed(1)}%`;
+      this.mark = (bestMark * (0.8 - bestIndex * 0.1) * 100 +  (bestMark * (0.2 + bestIndex * 0.1)) * (marksum - bestMark)/(this.text.length - 1) * 100)
+      this.result =  `recognized: ${this.text[bestIndex].toLowerCase()} | mark = ${mark.toFixed(1)}%`;
     } else {
-      this.result = `recognized ${this.text[0]} | mark ${bestMark}`;
+      this.mark = bestMark  * 100
+      this.result = `recognized: ${this.text[0]} | mark ${(bestMark*100).toFixed(1)}%`;
     }
-    alert(this.result);
+    this.showMark()
     this.isStop = true;
   }
 

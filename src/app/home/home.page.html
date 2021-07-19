@@ -14,18 +14,22 @@
   </ion-header>
 
   <div id="container">
-    <p>Перед стартом распознавания проверьте есть ли разрешение на запись голоса.</p>
+    <p class="instructions">Input text to recognize in a box below</p>
     <ion-item>
-      <ion-label position="stacked">Input text to recognize</ion-label>
       <ion-input [(ngModel)]="inputValue"></ion-input>
     </ion-item>
-    <!-- <ion-button (click) = "requestPermission()">Request permission</ion-button> -->
-    <ion-button (click) = "checkPermission()">Check permission</ion-button>
-    <ion-button (click) = "speak()">Start listening</ion-button>
-    <!-- <ion-button (click) = "stop()">Stop listening</ion-button> -->
-    <br>
-    <p *ngIf = "isStop">{{inputString}}</p>
-    <p *ngIf = "isStop">{{result}}</p>
-    <p *ngIf = "isStop">{{recognized}}</p>
+    <div class="output-text">
+      <p>{{resultText}}</p>
+    </div>
+    <ion-fab-button (click) = "speak()" class = "micro-btn">
+      <ion-icon name="mic-outline" class="micro"></ion-icon>
+    </ion-fab-button>
+    <div class="debug">
+      <p class ="test" >на информацию ниже не обращайте внимания :)</p>
+      <p *ngIf = "isStop">{{inputString}}</p>
+      <p *ngIf = "isStop">{{result}}</p>
+      <p *ngIf = "isStop">{{recognized}}</p>
+    </div>
+    
   </div>
 </ion-content>
