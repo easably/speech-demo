@@ -21,11 +21,18 @@
     <div class="output-text">
       <p>{{resultText}}</p>
     </div>
-    <ion-fab-button (click) = "speak()" class = "micro-btn">
-      <ion-icon name="mic-outline" class="micro"></ion-icon>
+    <ion-fab-button [ngClass]="{'microBtn': true, 'pulsation': isPulse}" (click) = "speak()">
+      <ion-icon name="mic-outline"></ion-icon>
     </ion-fab-button>
+    <ion-item>
+      <div class="catReactionContainer">
+        <img [ngClass]="{'catReaction': true, 'isHappyEmotion': isHappy}" src="../../assets/1.gif" alt="happy">
+        <img [ngClass]="{'catReaction': true, 'isSadEmotion': isSad}" src="../../assets/2.gif" alt="sad">
+        <img [ngClass]="{'catReaction': true, 'isSatisfiedEmotion': isSatisfied}" src="../../assets/3.gif" alt="satisfied">
+      </div>
+    </ion-item>
     <div class="debug">
-      <p class ="test" >на информацию ниже не обращайте внимания :)</p>
+      <p class ="test">На информацию ниже не обращайте внимания :)</p>
       <p *ngIf = "isStop">{{inputString}}</p>
       <p *ngIf = "isStop">{{result}}</p>
       <p *ngIf = "isStop">{{recognized}}</p>

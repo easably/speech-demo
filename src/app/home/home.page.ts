@@ -19,65 +19,96 @@ export class HomePage{
   inputValue: string = "";
   recognized: string = "";
   isStop: boolean = true;
+  isPulse: boolean = false;
+
+  isHappy: boolean = true;
+  isSatisfied: boolean = false;
+  isSad: boolean = false;
+
   mark: number = 0;
   constructor() {}
 
-  speak() {
+
+  async speak() {
     this.isStop = false;
-    if(SpeechRecognition.hasPermission()) {
-      SpeechRecognition.start({
+    await this.checkPermission();
+    let isAvailable = await this.isSpeechRecognitionAvailable();
+    console.log(isAvailable);
+    if(isAvailable) {
+      this.isPulse = true;
+      await SpeechRecognition.start({
         language:"en-US",
         maxResults: 5, 
       }).then((match) => {
+        console.log(match);
         this.text = match.matches;
-        this.stop()
+        this.stop();
+      }, err => {
+        console.log(err);
+        this.text = [""];
+        this.stop();
       })
     }
     else {
-      this.requestPermission();
-      this.speak();
+      alert("Speech recognition is not available on this device");
     }
   }
 
   stop() {
+    this.isPulse = false;
     SpeechRecognition.stop()
     this.printResult();
   }
 
-  
+  private async isSpeechRecognitionAvailable() : Promise<boolean> {
+    let isAvailable;
+    await SpeechRecognition.available().then((acces) => {
+      isAvailable = acces.available
+    })
+    return isAvailable;
+  }
 
-  private requestPermission() {
-    SpeechRecognition.available();
-    SpeechRecognition.requestPermission().then((data) => {
+
+  private async requestPermission() {
+    await SpeechRecognition.requestPermission().then((data) => {
       console.log("permission granted");
     },(err)=> {
       alert(JSON.stringify(err));
     })
   }
 
-  // private checkPermission() {
-  //   SpeechRecognition.hasPermission().then((perm) => {
-  //     if (perm.permission) {
-  //       console.log('already have permission');
-  //     }
-  //     else {
-  //       this.requestPermission()
-  //     }
-  //   },(err) => {
-  //     alert(JSON.stringify(err));
-  //   })
-  // }
+  private async checkPermission() {
+    await SpeechRecognition.hasPermission().then((perm) => {
+      if (perm.permission) {
+        console.log('already have permission');
+      }
+      else {
+        this.requestPermission()
+      }
+    },(err) => {
+      alert(JSON.stringify(err));
+    })
+  }
 
   private showMark() : void {
     console.log(this.mark)
     if(this.mark > 80) {
       this.resultText = "Excellent";
+      this.isSatisfied = true;
+      this.isHappy = false;
+      this.isSad = false;
     }
     else if(this.mark < 50) {
       this.resultText = "Could be better, try again";
+      this.isSatisfied = false;
+      this.isHappy = false;
+      this.isSad = true;
     }
     else {
       this.resultText = "Good";
+      this.isSatisfied = false;
+      this.isHappy = true;
+      this.isSad = false;
     }
     
   }
@@ -86,25 +117,27 @@ export class HomePage{
     let sourceText = this.inputValue; 
     this.recognized = "";
     this.inputString = sourceText;
-    let mark = 0;
+    let elemMark = 0;
     let bestMark = -1;
     let bestIndex = 0;
     let index = 0;
     let marksum = 0;
     sourceText = sourceText.toLowerCase();
     this.text.forEach(element => {
-      mark = 1 - this.calculateDistance(sourceText.toLowerCase(), element.toString().toLowerCase()) / Math.max(sourceText.length, element.length);
-      this.recognized += `${element.toString().toLowerCase()} - ${(mark * 100).toFixed(1)} | `;
-      marksum += mark
-      if(mark > bestMark) {
-        bestMark = mark;
+      elemMark = 1 - this.calculateDistance(sourceText.toLowerCase(), element.toString().toLowerCase()) / Math.max(sourceText.length, element.length);
+      this.recognized += `${element.toString().toLowerCase()} - ${(elemMark * 100).toFixed(1)} | `;
+      marksum += elemMark
+      if(elemMark > bestMark) {
+        bestMark = elemMark;
         bestIndex = index;
       }
       index++;
     });
     if (this.text.length != 1) {
-      this.mark = (bestMark * (0.8 - bestIndex * 0.1) * 100 +  (bestMark * (0.2 + bestIndex * 0.1)) * (marksum - bestMark)/(this.text.length - 1) * 100)
-      this.result =  `recognized: ${this.text[bestIndex].toLowerCase()} | mark = ${mark.toFixed(1)}%`;
+      this.mark = (bestMark * (0.8 - bestIndex * 0.1) +  (bestMark * (0.2 + bestIndex * 0.1)) * (marksum - bestMark)/(this.text.length - 1))
+      this.mark *= 100;
+      console.log("mark!!!!" +  this.mark);
+      this.result =  `recognized: ${this.text[bestIndex].toLowerCase()} | mark = ${this.mark.toFixed(1)}%`;
     } else {
       this.mark = bestMark  * 100
       this.result = `recognized: ${this.text[0]} | mark ${(bestMark*100).toFixed(1)}%`;

@@ -7,23 +7,6 @@
   transform: translateY(-50%);
 }
 
-// #container strong {
-//   font-size: 20px;
-//   line-height: 26px;
-// }
-
-// #container p {
-//   font-size: 16px;
-//   line-height: 22px; 
-//   color: #8c8c8c;
-
-//   margin: 0 5px;
-// }
-
-// #container a {
-//   text-decoration: none;
-// }
-
 ion-item {
   margin: 10px 0;
 }
@@ -37,7 +20,7 @@ ion-item {
 .instructions {
   font-size: 14px;
 }
-.micro-btn {
+.microBtn {
   margin: 20px auto;
 }
 
@@ -46,3 +29,38 @@ ion-item {
     font-size: 11px;
   }
 }
+
+.catReactionContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.pulsation {
+  --background : red;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+   transform: scale(0.9);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 50px rgba(90, 153, 212, 0);
+  }
+    100% {
+     transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(90, 153, 212, 0);
+  }
+}
+
+.catReaction {
+  display: none;
+}
+
+.isHappyEmotion, .isSadEmotion, .isSatisfiedEmotion {
+  display: block;
+}
+
+
