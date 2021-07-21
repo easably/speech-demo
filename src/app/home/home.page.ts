@@ -4,6 +4,14 @@ import { Component } from '@angular/core';
 // npm uninstall plugin-name
 import { SpeechRecognition } from '@capacitor-community/speech-recognition';
 
+// TODO: code refactor
+// TODO: plugin refactor
+// TODO: remove unnesesary logs
+enum TextMark {
+  Excellent,
+  Good,
+  Sad
+}
 
 @Component({
   selector: 'app-home',
@@ -11,21 +19,23 @@ import { SpeechRecognition } from '@capacitor-community/speech-recognition';
   styleUrls: ['home.page.scss'],
 })
 
+
 export class HomePage{
+  textMark = TextMark; 
+  
   text:String[];
   inputString: string = ""
   result: string = "Nothing recognized";
-  resultText: string = "Here would be your mark";
   inputValue: string = "";
   recognized: string = "";
+
   isStop: boolean = true;
   isPulse: boolean = false;
 
-  isHappy: boolean = true;
-  isSatisfied: boolean = false;
-  isSad: boolean = false;
+  textMarkValue = TextMark.Good;
 
   mark: number = 0;
+
   constructor() {}
 
 
@@ -93,32 +103,23 @@ export class HomePage{
   private showMark() : void {
     console.log(this.mark)
     if(this.mark > 80) {
-      this.resultText = "Excellent";
-      this.isSatisfied = true;
-      this.isHappy = false;
-      this.isSad = false;
+      this.textMarkValue = TextMark.Excellent; 
     }
     else if(this.mark < 50) {
-      this.resultText = "Could be better, try again";
-      this.isSatisfied = false;
-      this.isHappy = false;
-      this.isSad = true;
+      this.textMarkValue = TextMark.Sad; 
     }
     else {
-      this.resultText = "Good";
-      this.isSatisfied = false;
-      this.isHappy = true;
-      this.isSad = false;
+      this.textMarkValue = TextMark.Good; 
     }
     
   }
 
-  private printResult(): void {
+  private printResult(): void { //Print mark calculated usign Damerau-Levensthtein distance and list of results
     let sourceText = this.inputValue; 
     this.recognized = "";
     this.inputString = sourceText;
     let elemMark = 0;
-    let bestMark = -1;
+    let bestMark = 0;
     let bestIndex = 0;
     let index = 0;
     let marksum = 0;
@@ -149,7 +150,6 @@ export class HomePage{
   private calculateDistance(source:string, target:string): number { //method to calculate mark(Damerau-Levensthtein distance)
     if (!source) return target ? target.length : 0;
     else if (!target) return source.length;
-
     var m = source.length, n = target.length, INF = m+n, score = new Array(m+2), sd = {};
     for (var i = 0; i < m+2; i++) score[i] = new Array(n+2);
     score[0][0] = INF;
@@ -163,7 +163,6 @@ export class HomePage{
         score[0][j+1] = INF;
         sd[target[j]] = 0;
     }
-
     for (var i = 1; i <= m; i++) {
         var DB = 0;
         for (var j = 1; j <= n; j++) {

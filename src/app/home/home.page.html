@@ -1,42 +1,22 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Speech recognition
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
   <div id="container">
     <p class="instructions">Input text to recognize in a box below</p>
-    <ion-item>
+    <ion-item class="textInput">
       <ion-input [(ngModel)]="inputValue"></ion-input>
     </ion-item>
-    <div class="output-text">
-      <p>{{resultText}}</p>
-    </div>
     <ion-fab-button [ngClass]="{'microBtn': true, 'pulsation': isPulse}" (click) = "speak()">
-      <ion-icon name="mic-outline"></ion-icon>
+      <ion-icon class = "mic-icon" name="mic-outline"></ion-icon>
     </ion-fab-button>
-    <ion-item>
-      <div class="catReactionContainer">
-        <img [ngClass]="{'catReaction': true, 'isHappyEmotion': isHappy}" src="../../assets/1.gif" alt="happy">
-        <img [ngClass]="{'catReaction': true, 'isSadEmotion': isSad}" src="../../assets/2.gif" alt="sad">
-        <img [ngClass]="{'catReaction': true, 'isSatisfiedEmotion': isSatisfied}" src="../../assets/3.gif" alt="satisfied">
-      </div>
-    </ion-item>
+    <div class="catReactionContainer">
+      <img *ngIf="textMarkValue == textMark.Good" src="../../assets/1.gif" alt="good">
+      <img *ngIf="textMarkValue == textMark.Sad" src="../../assets/2.gif" alt="bad">
+      <img *ngIf="textMarkValue == textMark.Excellent" src="../../assets/3.gif" alt="excellent">
+    </div>
     <div class="debug">
-      <p class ="test">На информацию ниже не обращайте внимания :)</p>
+      <p class ="test">Варианты распознанного текста ниже</p>
       <p *ngIf = "isStop">{{inputString}}</p>
       <p *ngIf = "isStop">{{result}}</p>
       <p *ngIf = "isStop">{{recognized}}</p>
-    </div>
-    
+    </div>    
   </div>
 </ion-content>
