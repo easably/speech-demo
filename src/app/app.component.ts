@@ -1,10 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+
+// @ts-ignore
+window.SpeechRecognition = window?.webkitSpeechRecognition || window.SpeechRecognition;
+// @ts-ignore
+window.SpeechGrammarList = window?.webkitSpeechGrammarList || window.SpeechGrammarList;
 
 @Component({
   selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss'],
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  constructor() {}
+export class AppComponent implements OnInit {
+  ngOnInit() {
+  }
 }

@@ -1,0 +1,14 @@
+.song-title-wrapper {
+    width: 100%;
+    max-width: 500px;
+    height: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.song-title-text {
+    font-size: 20px;
+    color : #E6E6E6;
+}

@@ -1,0 +1,31 @@
+.song-progress-wrapper {
+    width: 184px;
+    height: 62px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.song-progress {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    &_right {
+        color: var(--green);
+    }
+    &_wrong {
+        color: var(--red);
+    }
+    &_lines {
+        color: var(--blue);
+    }
+
+    &__title {
+
+    }
+
+    &__count {
+        
+    }
+}

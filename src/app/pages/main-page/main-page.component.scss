@@ -1,0 +1,70 @@
+.menu {
+    display: flex;
+    justify-content: space-between;
+}
+
+.game-screen {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #0C0C24;
+}
+
+.song-wrapper {
+    width: calc(100% - 56px);
+    margin-top: 32px;
+}
+
+.song-lines {
+    width: 100%;
+    height: 150px;
+    margin-top: 48px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 0px 0px 32px 32px;
+    overflow: hidden;
+
+    li {
+        list-style: none;
+        font-size: 18px;
+        line-height: 200%;
+    }
+
+    &__bottom-shadow {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        bottom: 0;
+        background: linear-gradient(180deg, rgba(243, 243, 243, 0) 46.35%, #F3F3F3 92.19%);
+    }
+}
+
+.header-wrapper {
+    width: 100%;
+    display: flex;
+}
+
+.back-btn {
+    background-color: transparent;
+    color: white;
+    border: none;
+}
+
+song-progress {
+    margin-bottom: 42px;
+}
+
+song-title {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.debug {
+    color: white;
+}

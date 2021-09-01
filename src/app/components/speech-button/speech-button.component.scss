@@ -1,0 +1,37 @@
+@keyframes button-active {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+button {
+    width: 66px;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--blue);
+    transition: transform 0.2s;
+
+    &:active {
+        background-color: var(--red);
+        transform: scale(0.9);
+    }
+
+    img {
+        width: 32px;
+        height: 44px;
+    }
+}
+
+.button_active {
+    animation: button-active 2s infinite;
+}

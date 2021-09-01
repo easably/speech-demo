@@ -1,0 +1,17 @@
+<div class="song-line-wrapper" [ngSwitch]="line.state" [attr.data-status]="line.status">
+    <div *ngSwitchCase="'current'" class="current">
+        <!-- <p id="currentLineSpeechText"></p> -->
+        {{line.text}}
+    </div>
+    <div *ngSwitchCase="'pending'" class="inactive">
+        {{line.text}}
+    </div>
+    <div *ngSwitchCase="'completed'" class="completed">
+        {{line.text}}
+    </div>
+    <div *ngSwitchCase="'hidden'" class="hidden">
+        {{line.text}}
+    </div>
+</div>
+
+

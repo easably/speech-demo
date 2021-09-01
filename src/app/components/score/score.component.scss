@@ -1,0 +1,16 @@
+.score-wrapper {
+    display: flex;
+    align-items: center;
+
+    p {
+        width: 64px;
+        height: 16px;
+        border-radius: 32px;
+        border: 2px solid var(--grey);
+        text-align: center;
+    }
+
+    img {
+        transform: translateX(-13px);
+    }
+}

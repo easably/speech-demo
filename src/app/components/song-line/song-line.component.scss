@@ -1,0 +1,32 @@
+.song-line-wrapper {
+    transition: color 0.3s;
+    text-align: center;
+}
+.song-line-wrapper[data-status="right"] {
+    color: var(--blue);
+    font-weight: 700;
+}
+.song-line-wrapper[data-status="wrong"] {
+    color: var(--red);
+}
+
+.song-line-wrapper[data-status="completed"] {
+    .current {
+        color: var(--blue);
+    }
+}
+
+.hidden {
+    opacity: 0;
+}
+
+.current {
+    color : #E6E6E6;
+    font-size: 26px;
+}
+
+.inactive {
+    color: #717183;
+    font-weight: 400;
+    font-size: 16px;
+}

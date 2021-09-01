@@ -1,0 +1,274 @@
+{
+    "songs" : [
+        {
+            "artist": "The Queen",
+            "title": "We will rock you",
+            "lyrics": [
+                {
+                    "text": "Hidden",
+                    "status": null,
+                    "state": "hidden"
+                },
+                {
+                    "text": "Buddy you are a boy, make a big noise",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "Playing in the street, gonna be a big man someday",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "You got mud on your face, you big disgrace",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "Kicking you can all over the place, singin'",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "We will, we will rock you",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "We will, we will rock you",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "Buddy, you're a young man, hard man",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "Shouting in the street, gonna take on the world someday",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "You got blood on your face, you big disgrace",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "Waving your banner all over the place",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "We will, we will rock you",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "We will, we will rock you",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "Buddy, you're an old man, poor man",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "Pleading with your eyes, gonna get you some peace someday",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "You got mud on your face, big disgrace",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "Somebody better put you back into your place, do it!",
+                    "status": null,
+                    "state": "pending"
+                }
+                
+                
+            ]
+        },
+        {
+            "artist" : "Erick Clapton",
+            "title" : "Tears in Heaven",
+            "lyrics" : [
+                {
+                    "text": "Hidden",
+                    "status": null,
+                    "state": "hidden"
+                },
+                {
+                    "text": "Would you know my name?",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "If I saw you in heaven",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "Would it be the same?",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "If I saw you in heaven",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "I must be strong",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "And carry on",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "'Cause I know I don't belong",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "Here in Heaven",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "Would you hold my hand",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "If I saw you in heaven",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "Would you help me stand?",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "If I saw you in heaven",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "I'll find my way",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "Through night and day",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "'Cause I know I just can't stay",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "Here in heaven",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "Time can bring you down",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "Time can bend yout knees",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "Time can break your heart",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "Have your begging please",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "Begging please",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "Beyond the door",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "There's peace, I'm sure",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "And I know there'll be no more",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "Tears in heaven",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "Would you know my name?",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "If I saw you in heaven",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "Would it be the same?",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "If I saw you in heaven",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "I must be strong",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "And carry on",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "'Cause I know I don't belong",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "Here in Heaven",
+                    "status": null,
+                    "state": "pending"
+                }
+            ]
+
+        }
+    ]
+}

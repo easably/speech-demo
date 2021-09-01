@@ -1,0 +1,31 @@
+<div class="header-wrapper">
+    <button class="back-btn">
+        <svg width="9" height="16" viewBox="0 0 9 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 15L1 8L8 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>            
+    </button>
+    <song-title>{{song.artist}} - {{song.title}}</song-title>
+</div>
+<div class="game-screen">
+    <div class="song-wrapper">        
+        <ul class="song-lines">
+            <li *ngFor="let line of song.lyrics">
+                <song-line [line]="line"></song-line>
+            </li>
+
+            <!-- <div class="song-lines__bottom-shadow"></div> -->
+        </ul>
+    </div>
+    
+    <speech-button (touchstart)="isListening ? null : startSpeech()"
+                   (touchend)="stopSpeech()"
+                   [isActive]="isListening"
+    ></speech-button>
+
+    <song-progress></song-progress>
+    <div class="debug">
+        <button (click)="reloadAll()">Restart</button>
+        <p>Recognized:</p>
+        <p>{{recognizedString}}</p>
+    </div>
+</div>

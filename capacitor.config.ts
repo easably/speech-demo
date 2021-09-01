@@ -1,9 +1,9 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'speech-demo',
-  webDir: 'www',
+  appId: 'com.thewall.speech.app',
+  appName: 'speech-brick',
+  webDir: 'dist/speechBrick',
   bundledWebRuntime: false
 };
 
