@@ -66,8 +66,10 @@ export class MainPageComponent implements OnInit {
 
   startSpeech() {
     console.log("speech listening STARTED")
-    this.speechApi.startSpeech(this.dict);
-    this.isListening = true;
+    if(!this.isListening) {
+      this.speechApi.startSpeech(this.dict);
+      this.isListening = true;
+    }
   }
 
   stopSpeech() {
@@ -80,10 +82,18 @@ export class MainPageComponent implements OnInit {
     window.location.reload()
   }
 
-  private setDict() {
+  private setDict() { // Need to be refactored!
     let set = new Set();
     this.song.lyrics.forEach(line => {
-      let str = line.text.replace(/[.,!?']/g,'').toLowerCase();
+      let str = line.text.replace(/[.,!?]/g,'').toLowerCase();
+      let strWords = str.split(" ");
+      str = "";
+      for(let i = 0; i < strWords.length; i++) {
+        if(strWords[i][0] == "\'" || strWords[strWords[i].length - 1] == "\'") {
+          strWords[i] = strWords[i].replace("\'", "");
+        }
+        str += i + 1 != strWords.length ? strWords[i] + " ": strWords[i];
+      }
       set.add(str);
     }); 
     set.forEach(element => {

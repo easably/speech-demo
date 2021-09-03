@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import * as SONG from 'src/assets/song.json';
+import * as SONG from 'src/assets/songs.json';
 
 
 @Injectable({
