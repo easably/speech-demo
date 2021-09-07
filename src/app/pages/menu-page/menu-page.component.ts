@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Songs, Song } from 'src/app/models/song.model';
+import * as SONGS from 'src/assets/songs.json';
+
 
 
 @Component({
@@ -8,8 +11,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./menu-page.component.scss']
 })
 export class MenuPageComponent implements OnInit {
-  
-
+    public songsContainer: Songs = SONGS;
+    public songs : Song[] = this.songsContainer.songs
   constructor(
     private router: Router,
     
@@ -19,10 +22,10 @@ export class MenuPageComponent implements OnInit {
     
   }
 
-  goGame() {
-    this.router.navigate(['/game'], {
+  goGame(songIdx : number) {
+    this.router.navigate(['/main-page'], {
       queryParams: {
-        
+        songIdx
       }
     });
   }

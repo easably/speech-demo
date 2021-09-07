@@ -4,8 +4,9 @@
 	</header>
 	
 	<div class="games-list">
-		<button *ngFor="let game of gamesList" (click)="goGame()">
-			{{game.gameName}}
-		</button>
+		<div class="song" (click)="goGame(i)" *ngFor="let song of songs; let i = index">
+			<h2>{{song.artist}}</h2>
+			<p>{{song.title}}</p>
+		</div>
 	</div>
 </div>

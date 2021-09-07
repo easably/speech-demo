@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SongGameEndComponent } from './song-game-end.component';
+import { SongGameEndPageComponent } from './song-game-end-page.component';
 
-describe('SongGameEndComponent', () => {
-  let component: SongGameEndComponent;
-  let fixture: ComponentFixture<SongGameEndComponent>;
+describe('SongGameEndPageComponent', () => {
+  let component: SongGameEndPageComponent;
+  let fixture: ComponentFixture<SongGameEndPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SongGameEndComponent ]
+      declarations: [ SongGameEndPageComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SongGameEndComponent);
+    fixture = TestBed.createComponent(SongGameEndPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

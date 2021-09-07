@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainPageComponent } from './pages/main-page/main-page.component';
-import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
-import { SongGameEndComponent } from './pages/song-game-end/song-game-end.component';
+import { MenuPageComponent } from './pages/menu-page/menu-page.component';
+import { SongGameEndPageComponent } from './pages/song-game-end-page/song-game-end-page.component';
 
 const routes: Routes = [
   {
     path: 'main',
-    component: MainPageComponent
+    component: MenuPageComponent
   },
   {
     path: '',
@@ -15,12 +15,12 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: '**',
-    component: PageNotFoundComponent
+    path: 'game-end-page',
+    component: SongGameEndPageComponent
   },
   {
-    path: 'game-end',
-    component: SongGameEndComponent
+    path: 'main-page',
+    component: MainPageComponent
   },
 ];
 

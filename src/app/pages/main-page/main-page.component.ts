@@ -16,7 +16,7 @@ import * as SONGS from 'src/assets/songs.json';
 export class MainPageComponent implements OnInit {
 
   public songsContainer: Songs = SONGS;
-  public song : Song = this.songsContainer.songs[1];
+  public song : Song = this.songsContainer.songs[this.activatedRoute.snapshot.queryParams.songIdx]; //refactor
 
   public isListening: boolean = false;
   public dict : string = "";
@@ -26,7 +26,8 @@ export class MainPageComponent implements OnInit {
     private speechApi: SpeechApiService,
     private cdRef: ChangeDetectorRef,
     private songProgressService: SongProgressService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
@@ -35,7 +36,6 @@ export class MainPageComponent implements OnInit {
     this.song.lyrics[1].state = "current";
 
     this.setDict()
-    
     this.speechApi.speechResult.subscribe(result => {
       this.song.lyrics[1].status = "completed"
       const line = this.song.lyrics[1].text.replace(/[.,!?']/g,'').toLowerCase();
@@ -57,7 +57,15 @@ export class MainPageComponent implements OnInit {
           this.song.lyrics[1].state = "current";
           this.cdRef.detectChanges();
         } else {
-          this.router.navigate(["/game-end"])
+          let right = this.songProgressService.right.getValue();
+          let wrong = this.songProgressService.wrong.getValue();
+          this.router.navigate(['/game-end-page'], {
+            queryParams: {
+              right,
+              wrong
+            }
+          });
+          
         }
       }, 1000);
 
@@ -85,6 +93,9 @@ export class MainPageComponent implements OnInit {
   }
 
   private setDict() { // Need to be refactored!
+    console.log()
+
+
     let set = new Set();
     this.song.lyrics.forEach(line => {
       let str = line.text.replace(/[.,!?]/g,'').toLowerCase();
