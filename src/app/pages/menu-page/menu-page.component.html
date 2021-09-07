@@ -1,0 +1,11 @@
+<div class="wrapper">
+	<header class="header">
+		<h1>Select a game</h1>
+	</header>
+	
+	<div class="games-list">
+		<button *ngFor="let game of gamesList" (click)="goGame()">
+			{{game.gameName}}
+		</button>
+	</div>
+</div>

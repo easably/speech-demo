@@ -1,1 +1,5 @@
-<p>song-game-end works!</p>
+<div *ngIf="lyrics">
+    <p *ngFor="let line of lines">
+      {{ line.text }}
+    </p>
+  </div>

@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Song, Songs } from 'src/app/models/song.model';
 import { SongProgressService } from 'src/app/services/song-progress/song-progress.service';
 import { SpeechApiService } from 'src/app/services/speech-api/speech-api.service';
@@ -24,7 +25,8 @@ export class MainPageComponent implements OnInit {
   constructor(
     private speechApi: SpeechApiService,
     private cdRef: ChangeDetectorRef,
-    private songProgressService: SongProgressService
+    private songProgressService: SongProgressService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -47,7 +49,7 @@ export class MainPageComponent implements OnInit {
         this.songProgressService.addWrong();
       }
 
-      setTimeout(() => {
+      setTimeout(() => { //need to change logic
         this.song.lyrics[1].status = null;
         this.song.lyrics[1].state = "pending";
         this.song.lyrics.shift();
@@ -55,7 +57,7 @@ export class MainPageComponent implements OnInit {
           this.song.lyrics[1].state = "current";
           this.cdRef.detectChanges();
         } else {
-          alert("game end"); // call result route
+          this.router.navigate(["/game-end"])
         }
       }, 1000);
 

@@ -13,6 +13,7 @@ import { SpeechButtonComponent } from './components/speech-button/speech-button.
 import { SongProgressComponent } from './components/song-progress/song-progress.component';
 import { SongLineComponent } from './components/song-line/song-line.component';
 import { SongGameEndComponent } from './pages/song-game-end/song-game-end.component';
+import { MenuPageComponent } from './pages/menu-page/menu-page.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { SongGameEndComponent } from './pages/song-game-end/song-game-end.compon
     SongProgressComponent,
     SongLineComponent,
     SongGameEndComponent,
+    MenuPageComponent,
   ],
   imports: [
     BrowserModule,
