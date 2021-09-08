@@ -27,13 +27,17 @@ export class LyricsStatsPageComponent implements OnInit {
   }
 
   debug() {
+    if(this.song.lyrics.length < 2) {
+      window.location.reload();
+      return;
+    }
     let correctList : string[] = this.activatedRoute.snapshot.queryParams.correctList;
     let wrongList : string[] = this.activatedRoute.snapshot.queryParams.wrongList
     console.log(wrongList)
-    // console.log(wrongList.includes("2"))
-    let idx = 1;
+    let idx = 0;
     console.log(this.song.lyrics)
     this.song.lyrics.forEach(line => {
+      console.log(line)
       if(correctList?.includes(idx.toString())) {
         this.lyricsLine.push({text : line.text, status : "correct"})
       }
