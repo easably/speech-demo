@@ -1,3 +1,16 @@
-<p>{{right}}</p>
-<p>{{wrong}}</p>
+<h1>Final Stats:</h1>
+<div class="stats">
+    <p class="correct">Correct: {{correctPercent}}%</p>
+    <p class="wrong">Wrong: {{wrongPercent}}%</p>
+</div>
+
+<div class="buttons">
+    <button (click)="backToMenu()">Back to menu</button>
+    <button (click)="viewDetails()">More info</button>
+    <button (click)="tryAgainSong()">Try again</button>
+</div>
+
+
+
+
 

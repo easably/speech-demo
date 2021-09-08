@@ -13,9 +13,9 @@ import * as SONGS from 'src/assets/songs.json';
 export class MenuPageComponent implements OnInit {
     public songsContainer: Songs = SONGS;
     public songs : Song[] = this.songsContainer.songs
-  constructor(
-    private router: Router,
     
+  constructor(
+    private router: Router,   
   ) { }
 
   ngOnInit(): void {

@@ -1,4 +1,12 @@
+h1 {
+    text-align: center;
+    color: white;
+}
+
 .song {
     border: 2px solid red;
     margin: 5px;
+    p, h2 {
+        color: white;
+    }
 }

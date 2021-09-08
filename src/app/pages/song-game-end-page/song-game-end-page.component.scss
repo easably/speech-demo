@@ -1,0 +1,29 @@
+h1 {
+    text-align: center;
+    color: white;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    .wrong {
+        color: red;
+    }
+    .correct {
+        color: green;
+    }
+    margin-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    
+    button {
+        background-color: blue;
+        padding: 10px;
+    }
+}
+
+

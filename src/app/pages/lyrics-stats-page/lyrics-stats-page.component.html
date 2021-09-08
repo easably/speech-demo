@@ -1,0 +1,5 @@
+<button (click)="back()">Back</button>
+<li *ngFor="let line of lyricsLine">
+    <p *ngIf="line.status == 'right'" class="green">{{line.text}}</p>
+    <p *ngIf="line.status == 'wrong'" class="red">{{line.text}}</p>
+</li>

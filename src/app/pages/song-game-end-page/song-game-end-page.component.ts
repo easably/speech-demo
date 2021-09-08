@@ -8,9 +8,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SongGameEndPageComponent implements OnInit {
 
-  public right = this.activatedRoute.snapshot.queryParams.right
-  public wrong = this.activatedRoute.snapshot.queryParams.wrong
+  private right = this.activatedRoute.snapshot.queryParams.right
+  private wrong = this.activatedRoute.snapshot.queryParams.wrong
 
+  public correctPercent : string = "";
+  public wrongPercent : string = "";
 
   constructor(
     private router: Router,
@@ -18,11 +20,47 @@ export class SongGameEndPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
+    this.calculateStats()
+    this.debug()
   }
 
-  log() {
-    
+  debug() {
+    console.log(this.activatedRoute.snapshot.queryParams.wrongList)
+    console.log(this.activatedRoute.snapshot.queryParams.correctList)
+  }
+
+  calculateStats() {
+    let sum = this.right + this.wrong;
+    this.correctPercent = (this.right / sum * 100).toFixed(1);
+    this.wrongPercent = (this.wrong / sum * 100).toFixed(1);
+  }
+
+  tryAgainSong() {
+    let songIdx = this.activatedRoute.snapshot.queryParams.songIdx;
+    this.router.navigate(['/main-page'], {
+      queryParams: {
+        songIdx
+      }
+    });
+  }
+
+  backToMenu() {
+    this.router.navigate(["menu-page"])
+  }
+
+  viewDetails() {
+    let correctList = this.activatedRoute.snapshot.queryParams.correctList
+    let wrongList = this.activatedRoute.snapshot.queryParams.wrongList
+    let songIdx = this.activatedRoute.snapshot.queryParams.songIdx;
+    console.log(correctList)
+    console.log(wrongList)
+    this.router.navigate(["lyrics-stats-page"],  {
+      queryParams: {
+        songIdx,
+        correctList,
+        wrongList
+      }
+    });
   }
 
 }

@@ -22,6 +22,10 @@ export class MainPageComponent implements OnInit {
   public dict : string = "";
   public recognizedString : string = "NULL";
 
+  public correctList: number[] = [];
+  public wrongList: number[] = [];
+  public currectLine = 1;
+
   constructor(
     private speechApi: SpeechApiService,
     private cdRef: ChangeDetectorRef,
@@ -31,10 +35,8 @@ export class MainPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.setStartState()
     this.songProgressService.resetSongProgress(this.song.lyrics.length - 1);
-    
-    this.song.lyrics[1].state = "current";
-
     this.setDict()
     this.speechApi.speechResult.subscribe(result => {
       this.song.lyrics[1].status = "completed"
@@ -43,9 +45,13 @@ export class MainPageComponent implements OnInit {
       this.recognizedString = result;
       if (result === line) {
         //this.song.lyrics[1].status = 'right';
+        this.correctList.push(this.currectLine)
+        this.currectLine++;
         this.songProgressService.addRight();
       } else {
         //this.song.lyrics[1].status = 'wrong';
+        this.wrongList.push(this.currectLine)
+        this.currectLine++;
         this.songProgressService.addWrong();
       }
 
@@ -59,19 +65,33 @@ export class MainPageComponent implements OnInit {
         } else {
           let right = this.songProgressService.right.getValue();
           let wrong = this.songProgressService.wrong.getValue();
+          let songIdx = this.activatedRoute.snapshot.queryParams.songIdx;
+          let correctList = this.correctList
+          let wrongList = this.wrongList;
           this.router.navigate(['/game-end-page'], {
             queryParams: {
               right,
-              wrong
+              wrong,
+              songIdx,
+              correctList,
+              wrongList
             }
           });
-          
         }
       }, 1000);
-
       this.cdRef.detectChanges();
       this.isListening = false;
     });
+  }
+
+  setStartState() {
+    
+    if(this.song.lyrics.length > 1) {
+      this.song.lyrics[1].state = "current";
+    }
+    else {
+      this.reloadAll()
+    }
   }
 
   startSpeech() {
@@ -92,10 +112,14 @@ export class MainPageComponent implements OnInit {
     window.location.reload()
   }
 
+  goBack() {
+    this.song.lyrics.length = 0 // убрать костыль
+    this.router.navigate(["menu-page"])
+  }
+
+
   private setDict() { // Need to be refactored!
-    console.log()
-
-
+    console.log(this.activatedRoute.snapshot.queryParamMap)
     let set = new Set();
     this.song.lyrics.forEach(line => {
       let str = line.text.replace(/[.,!?]/g,'').toLowerCase();

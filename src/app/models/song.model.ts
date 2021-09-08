@@ -1,7 +1,7 @@
 export interface Song {
     artist: string,
     title: string,
-    lyrics: line[],
+    lyrics: LyricsLine[],
 }
 
 export interface Songs {
@@ -10,7 +10,7 @@ export interface Songs {
 
 
 
-interface line {
+export interface LyricsLine {
     text: string;
     //words : word[]
     state: any;

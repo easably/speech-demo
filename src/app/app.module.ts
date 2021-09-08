@@ -13,6 +13,7 @@ import { SongProgressComponent } from './components/song-progress/song-progress.
 import { SongLineComponent } from './components/song-line/song-line.component';
 import { MenuPageComponent } from './pages/menu-page/menu-page.component';
 import { SongGameEndPageComponent } from './pages/song-game-end-page/song-game-end-page.component';
+import { LyricsStatsPageComponent } from './pages/lyrics-stats-page/lyrics-stats-page.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { SongGameEndPageComponent } from './pages/song-game-end-page/song-game-e
     SongLineComponent,
     MenuPageComponent,
     SongGameEndPageComponent,
+    LyricsStatsPageComponent,
   ],
   imports: [
     BrowserModule,
