@@ -40,7 +40,16 @@ export class MainPageComponent implements OnInit {
     this.setDict()
     this.speechApi.speechResult.subscribe(result => {
       this.song.lyrics[1].status = "completed"
-      const line = this.song.lyrics[1].text.replace(/[.,!?']/g,'').toLowerCase();
+      let line = this.song.lyrics[1].text.replace(/[.,!?]/g,'').toLowerCase();
+      let strWords = line.split(" ");
+      line = "";
+      for(let i = 0; i < strWords.length; i++) {
+        if(strWords[i][0] == "\'" || strWords[i][strWords[i].length - 1] == "\'" || (strWords[i][strWords[i].length - 1] == 
+          "s" && strWords[i][strWords[i].length - 2] == "\'")) {
+          strWords[i] = strWords[i].replace("\'", "");
+        }
+        line += i + 1 != strWords.length ? strWords[i] + " ": strWords[i];
+      }
       console.log(`result: ${result} ||| source: ${line}`);
       this.recognizedString = result;
       if (result === line) {
@@ -126,7 +135,8 @@ export class MainPageComponent implements OnInit {
       let strWords = str.split(" ");
       str = "";
       for(let i = 0; i < strWords.length; i++) {
-        if(strWords[i][0] == "\'" || strWords[strWords[i].length - 1] == "\'") {
+        if(strWords[i][0] == "\'" || strWords[i][strWords[i].length - 1] == "\'" || (strWords[i][strWords[i].length - 1] == 
+          "s" && strWords[i][strWords[i].length - 2] == "\'")) { // change
           strWords[i] = strWords[i].replace("\'", "");
         }
         str += i + 1 != strWords.length ? strWords[i] + " ": strWords[i];

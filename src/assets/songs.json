@@ -3,6 +3,7 @@
         {
             "artist": "The Queen",
             "title": "We will rock you",
+            "label": "./assets/song-icons/1.png",
             "lyrics": [
                 {
                     "text": "Hidden",
@@ -96,6 +97,7 @@
         {
             "artist" : "Erick Clapton",
             "title" : "Tears in Heaven",
+            "label": "./assets/song-icons/2.png",
             "lyrics" : [
                 {
                     "text": "Hidden",
@@ -269,6 +271,78 @@
                 }
             ]
 
+        },
+        {
+            "artist" : "Rick Ashley",
+            "title" : "Never gonna give you up",
+            "label": "./assets/song-icons/2.png",
+            "lyrics" : [
+                {
+                    "text": "Hidden",
+                    "status": null,
+                    "state": "hidden"
+                },
+                {
+                    "text": "We're no strangers to love",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "You know the rules and so do I",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "A full commitment's what I'm thinking of",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "You wouldn't get this from any other guy",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "I just wanna tell you how I'm feeling",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "Gotta make you understand",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "Never gonna give you up",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "Never gonna let you down",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "Never gonna run around and desert you",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "Never gonna make you cry",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "Never gonna say goodbye",
+                    "status": null,
+                    "state": "pending"
+                },
+                {
+                    "text": "Never gonna tell a lie and hurt you",
+                    "status": null,
+                    "state": "pending"
+                }
+            ]
         }
     ]
 }

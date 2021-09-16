@@ -1,6 +1,9 @@
 .song-line-wrapper {
     transition: color 0.3s;
     text-align: center;
+    height: 64px;
+    display: flex;
+    align-items: center;
 }
 .song-line-wrapper[data-status="right"] {
     color: var(--blue);
@@ -23,10 +26,12 @@
 .current {
     color : #E6E6E6;
     font-size: 26px;
+    line-height: 32px;
 }
 
 .inactive {
     color: #717183;
     font-weight: 400;
     font-size: 16px;
+    line-height: 30px;
 }

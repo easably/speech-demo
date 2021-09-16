@@ -8,8 +8,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SongGameEndPageComponent implements OnInit {
 
-  private right = this.activatedRoute.snapshot.queryParams.right
-  private wrong = this.activatedRoute.snapshot.queryParams.wrong
+  public right = this.activatedRoute.snapshot.queryParams.right
+  public wrong = this.activatedRoute.snapshot.queryParams.wrong
 
   public correctPercent : string = "";
   public wrongPercent : string = "";
@@ -30,7 +30,8 @@ export class SongGameEndPageComponent implements OnInit {
   }
 
   calculateStats() {
-    let sum = this.right + this.wrong;
+    let sum = Number(this.right) + Number(this.wrong);
+    console.log(sum)
     this.correctPercent = (this.right / sum * 100).toFixed(1);
     this.wrongPercent = (this.wrong / sum * 100).toFixed(1);
   }

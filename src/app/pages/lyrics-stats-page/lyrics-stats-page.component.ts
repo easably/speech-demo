@@ -39,7 +39,7 @@ export class LyricsStatsPageComponent implements OnInit {
     this.song.lyrics.forEach(line => {
       console.log(line)
       if(correctList?.includes(idx.toString())) {
-        this.lyricsLine.push({text : line.text, status : "correct"})
+        this.lyricsLine.push({text : line.text, status : "right"})
       }
       if(wrongList?.includes(idx.toString())) {
         this.lyricsLine.push({text : line.text, status : "wrong"})
@@ -50,7 +50,7 @@ export class LyricsStatsPageComponent implements OnInit {
     console.log(this.lyricsLine)
   }
 
-  back() {
+  backToStats() {
     window.history.back()
   }
 
