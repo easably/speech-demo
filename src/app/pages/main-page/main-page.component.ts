@@ -1,11 +1,9 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Song, Songs } from 'src/app/models/song.model';
+import { Song } from 'src/app/models/song.model';
 import { SongProgressService } from 'src/app/services/song-progress/song-progress.service';
+import { SongHandlerService } from 'src/app/services/song-handler/song-handler.service';
 import { SpeechApiService } from 'src/app/services/speech-api/speech-api.service';
-
-import * as SONGS from 'src/assets/songs.json';
-
 
 
 @Component({
@@ -15,8 +13,7 @@ import * as SONGS from 'src/assets/songs.json';
 })
 export class MainPageComponent implements OnInit {
 
-  public songsContainer: Songs = SONGS;
-  public song : Song = this.songsContainer.songs[this.activatedRoute.snapshot.queryParams.songIdx]; //refactor
+  public song : Song;
 
   public isListening: boolean = false;
   public dict : string = "";
@@ -32,12 +29,14 @@ export class MainPageComponent implements OnInit {
     private songProgressService: SongProgressService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
+    private songHandler : SongHandlerService
   ) { }
 
   ngOnInit(): void {
     this.setStartState()
     this.songProgressService.resetSongProgress(this.song.lyrics.length - 1);
     this.setDict()
+
     this.speechApi.speechResult.subscribe(result => {
       this.song.lyrics[1].status = "completed"
       let line = this.song.lyrics[1].text.replace(/[.,!?]/g,'').toLowerCase();
@@ -50,7 +49,6 @@ export class MainPageComponent implements OnInit {
         }
         line += i + 1 != strWords.length ? strWords[i] + " ": strWords[i];
       }
-      console.log(`result: ${result} ||| source: ${line}`);
       this.recognizedString = result;
       if (result === line) {
         //this.song.lyrics[1].status = 'right';
@@ -64,7 +62,7 @@ export class MainPageComponent implements OnInit {
         this.songProgressService.addWrong();
       }
 
-      setTimeout(() => { //need to change logic
+      setTimeout(() => { 
         this.song.lyrics[1].status = null;
         this.song.lyrics[1].state = "pending";
         this.song.lyrics.shift();
@@ -87,24 +85,25 @@ export class MainPageComponent implements OnInit {
             }
           });
         }
-      }, 1000);
+      }, 1000);  
       this.cdRef.detectChanges();
       this.isListening = false;
     });
   }
 
-  setStartState() {
-    
-    if(this.song.lyrics.length > 1) {
-      this.song.lyrics[1].state = "current";
-    }
-    else {
-      this.reloadAll()
-    }
+  setStartState() {  
+    this.songHandler.setCurrentSong(this.activatedRoute.snapshot.queryParams.songIdx);
+    this.song = JSON.parse(JSON.stringify(this.songHandler.currentSong));
+    this.song.lyrics[1].state = "current";
+    // if(this.song.lyrics.length > 1) {
+    //   this.song.lyrics[1].state = "current";
+    // }
+    // else {
+    //   this.reloadAll()
+    // }
   }
 
   startSpeech() {
-    console.log("speech listening STARTED")
     if(!this.isListening) {
       this.speechApi.startSpeech(this.dict);
       this.isListening = true;
@@ -112,7 +111,6 @@ export class MainPageComponent implements OnInit {
   }
 
   stopSpeech() {
-    console.log("speech listening FINISHED")
     this.speechApi.stopSpeech()
     this.isListening = false;
   }
@@ -122,12 +120,11 @@ export class MainPageComponent implements OnInit {
   }
 
   goBack() {
-    this.song.lyrics.length = 0 // убрать костыль
     this.router.navigate(["menu-page"])
   }
 
 
-  private setDict() { // Need to be refactored!
+  private setDict() { 
     console.log(this.activatedRoute.snapshot.queryParamMap)
     let set = new Set();
     this.song.lyrics.forEach(line => {
@@ -136,7 +133,7 @@ export class MainPageComponent implements OnInit {
       str = "";
       for(let i = 0; i < strWords.length; i++) {
         if(strWords[i][0] == "\'" || strWords[i][strWords[i].length - 1] == "\'" || (strWords[i][strWords[i].length - 1] == 
-          "s" && strWords[i][strWords[i].length - 2] == "\'")) { // change
+          "s" && strWords[i][strWords[i].length - 2] == "\'")) {
           strWords[i] = strWords[i].replace("\'", "");
         }
         str += i + 1 != strWords.length ? strWords[i] + " ": strWords[i];

@@ -1,35 +1,42 @@
 <div class="header-wrapper">
     <button (click)="backToMenu()" class="back-btn">
         <svg width="9" height="16" viewBox="0 0 9 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8 15L1 8L8 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>            
+            <path d="M8 15L1 8L8 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
     </button>
     <p>Список песен</p>
 </div>
 
-<h1 class="congrats">Поздравляем!</h1>
-<p class="text-end">Теперь твое произношение стало лучше</p>
-<div class="cat">
-    <img *ngIf="right / (right + wrong) == 1" src="assets/happy.png" alt="">
-    <img *ngIf="right / (right + wrong) < 1 && right / (right + wrong) > 0.3" src="assets/ok.png" alt="">
-    <img *ngIf="right / (right + wrong) <= 0.3" src="assets/sad.png" alt="">
+<div *ngIf="isExtended">
+    <stats [correctList]="correctList" [wrongList]="wrongList" [song]="song"></stats>
 </div>
-<div class="stats">
-    <p *ngIf="correctPercent != '0.0'" class="correct">{{correctPercent}}% Хорошо</p>
-    <p *ngIf="wrongPercent != '0.0'" class="wrong">{{wrongPercent}}% Плохо</p>
+<div *ngIf="!isExtended">
+    <div *ngIf="right / (right + wrong) >= 0.5" class="congrats-text">
+        <h1 class="congrats">Поздравляю</h1>
+        <p class="text-end">Теперь твое произношение стало лучше</p>
+    </div>
+    <div *ngIf="right / (right + wrong) < 0.5" class="congrats-text">
+        <h1 class="congrats">Ты можешь лучше!</h1>
+        <p class="text-end">Попробуй еще раз!</p>
+    </div>
+
+    <div class="cat">
+        <img *ngIf="right / (right + wrong) == 1" src="assets/happy.png" alt="">
+        <img *ngIf="right / (right + wrong) < 1 && right / (right + wrong) > 0.3" src="assets/ok.png" alt="">
+        <img *ngIf="right / (right + wrong) <= 0.3" src="assets/sad.png" alt="">
+    </div>
+
+    <div class="stats">
+        <p *ngIf="correctPercent != '0'" class="correct">{{correctPercent}}% Хорошо</p>
+        <p *ngIf="wrongPercent != '0'" class="wrong">{{wrongPercent}}% Плохо</p>
+    </div>
+    <div class="buttons">
+        <button class="more-info" (click)="viewDetails()">Подробнее</button>
+    </div>
+    <div class="buttons">
+        <button class="try-again" (click)="tryAgainSong()">Попробовать снова</button>
+    </div>
+    <div class="buttons">
+        <button class="song-list" (click)="backToMenu()">Список песен</button>
+    </div>
 </div>
-<div class="buttons">
-    <button class="more-info" (click)="viewDetails()">Подробнее</button>
-</div>
-<div class="buttons">
-    <button class="try-again" (click)="tryAgainSong()">Попробывать снова</button>
-</div>
-<div class="buttons">
-    <button class="song-list" (click)="backToMenu()">Список песен</button>
-</div>
-
-
-
-
-
-

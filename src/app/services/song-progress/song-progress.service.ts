@@ -19,15 +19,19 @@ export class SongProgressService {
   addRight() {
     let currentValue = this.right.getValue();
     let currentCompleted = this.completed.getValue();
-    this.right.next(++currentValue);
-    this.completed.next(++currentCompleted);
+    if(this.completed.getValue() < this.length.getValue()) {
+      this.right.next(++currentValue);
+      this.completed.next(++currentCompleted);
+    }
   }
 
   addWrong() {
     let currentValue = this.wrong.getValue();
     let currentCompleted = this.completed.getValue();
-    this.wrong.next(++currentValue);
-    this.completed.next(++currentCompleted);
+    if(this.completed.getValue() < this.length.getValue()) {
+      this.wrong.next(++currentValue);
+      this.completed.next(++currentCompleted);
+    }
   }
 
   resetSongProgress(newLength: number) {

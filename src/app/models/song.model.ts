@@ -9,11 +9,8 @@ export interface Songs {
     songs : Song[]
 }
 
-
-
 export interface LyricsLine {
     text: string;
-    //words : word[]
     state: any;
     status: 'right' | 'wrong' | "completed" | null;
 }

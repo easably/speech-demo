@@ -3,7 +3,7 @@
         {
             "artist": "The Queen",
             "title": "We will rock you",
-            "label": "./assets/song-icons/1.png",
+            "label": "./assets/song-icons/1.svg",
             "lyrics": [
                 {
                     "text": "Hidden",
@@ -97,7 +97,7 @@
         {
             "artist" : "Erick Clapton",
             "title" : "Tears in Heaven",
-            "label": "./assets/song-icons/2.png",
+            "label": "./assets/song-icons/2.svg",
             "lyrics" : [
                 {
                     "text": "Hidden",
@@ -275,7 +275,7 @@
         {
             "artist" : "Rick Ashley",
             "title" : "Never gonna give you up",
-            "label": "./assets/song-icons/2.png",
+            "label": "./assets/song-icons/2.svg",
             "lyrics" : [
                 {
                     "text": "Hidden",

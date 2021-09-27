@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -13,7 +13,9 @@ import { SongProgressComponent } from './components/song-progress/song-progress.
 import { SongLineComponent } from './components/song-line/song-line.component';
 import { MenuPageComponent } from './pages/menu-page/menu-page.component';
 import { SongGameEndPageComponent } from './pages/song-game-end-page/song-game-end-page.component';
-import { LyricsStatsPageComponent } from './pages/lyrics-stats-page/lyrics-stats-page.component';
+import { StatsComponent } from './components/stats/stats.component';
+import { InsertSongPageComponent } from './pages/insert-song-page/insert-song-page.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,11 +28,15 @@ import { LyricsStatsPageComponent } from './pages/lyrics-stats-page/lyrics-stats
     SongLineComponent,
     MenuPageComponent,
     SongGameEndPageComponent,
-    LyricsStatsPageComponent,
+    StatsComponent,
+    InsertSongPageComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable

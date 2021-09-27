@@ -13,10 +13,10 @@ h1 {
         font-weight: 400;
     }
     .wrong {
-        color: red;
+        color: #F06F78;
     }
     .correct {
-        color: green;
+        color: #31BB9A;
     }
     
 }
@@ -32,7 +32,6 @@ h1 {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    padding-bottom: 38px;
     margin-bottom: 24px;
     p {
         color: white;
@@ -85,6 +84,7 @@ h1 {
 .try-again {
     width: 100%;
     border-radius: 100px;
+    font-size: 16px;
     background: linear-gradient(45.4deg, #007BD5 0%, #3DA8FF 53.5%, #00B9F1 92.54%);
     margin: 64px 0 0 0;
     padding: 15px;

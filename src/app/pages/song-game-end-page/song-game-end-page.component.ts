@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Song, Songs } from 'src/app/models/song.model';
+import { SongHandlerService } from 'src/app/services/song-handler/song-handler.service';
 
 @Component({
   selector: 'app-song-game-end-page',
@@ -8,15 +10,22 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SongGameEndPageComponent implements OnInit {
 
-  public right = this.activatedRoute.snapshot.queryParams.right
-  public wrong = this.activatedRoute.snapshot.queryParams.wrong
+  public right = Number(this.activatedRoute.snapshot.queryParams.right)
+  public wrong = Number(this.activatedRoute.snapshot.queryParams.wrong)
+  public correctList : string[] = this.activatedRoute.snapshot.queryParams.correctList
+  public wrongList : string[] = this.activatedRoute.snapshot.queryParams.wrongList
+
+  public song : Song = this.songHandler.currentSong;
 
   public correctPercent : string = "";
   public wrongPercent : string = "";
 
+  public isExtended : boolean = false;
+
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
+    private songHandler : SongHandlerService
   ) { }
 
   ngOnInit(): void {
@@ -31,9 +40,8 @@ export class SongGameEndPageComponent implements OnInit {
 
   calculateStats() {
     let sum = Number(this.right) + Number(this.wrong);
-    console.log(sum)
-    this.correctPercent = (this.right / sum * 100).toFixed(1);
-    this.wrongPercent = (this.wrong / sum * 100).toFixed(1);
+    this.correctPercent = Math.ceil(this.right / sum * 100).toString();
+    this.wrongPercent = Math.floor(this.wrong / sum * 100).toString();
   }
 
   tryAgainSong() {
@@ -46,22 +54,15 @@ export class SongGameEndPageComponent implements OnInit {
   }
 
   backToMenu() {
-    this.router.navigate(["menu-page"])
+    if(!this.isExtended) {
+      this.router.navigate(["menu-page"])
+    } else {
+      this.isExtended = false;
+    } 
   }
 
   viewDetails() {
-    let correctList = this.activatedRoute.snapshot.queryParams.correctList
-    let wrongList = this.activatedRoute.snapshot.queryParams.wrongList
-    let songIdx = this.activatedRoute.snapshot.queryParams.songIdx;
-    console.log(correctList)
-    console.log(wrongList)
-    this.router.navigate(["lyrics-stats-page"],  {
-      queryParams: {
-        songIdx,
-        correctList,
-        wrongList
-      }
-    });
+    this.isExtended = true;
   }
 
 }

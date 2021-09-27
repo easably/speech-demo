@@ -4,7 +4,8 @@
             <path d="M8 15L1 8L8 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>            
     </button>
-    <song-title>{{song.artist}} - {{song.title}}</song-title>
+    <p>{{song.artist}} - {{song.title}}</p>
+    
 </div>
 <div class="game-screen">
     <div class="song-wrapper">        
@@ -12,8 +13,6 @@
             <li *ngFor="let line of song.lyrics">
                 <song-line [line]="line"></song-line>
             </li>
-
-            <!-- <div class="song-lines__bottom-shadow"></div> -->
         </ul>
     </div>
     
@@ -23,9 +22,12 @@
     ></speech-button>
 
     <song-progress></song-progress>
+
+    
     <div class="debug">
         <button (click)="reloadAll()">Restart</button>
         <p>Recognized:</p>
         <p>{{recognizedString}}</p>
     </div>
+    
 </div>

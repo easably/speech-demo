@@ -1,24 +1,38 @@
-h1 {
-    text-align: center;
-    color: white;
+.context {
+    display: flex;
+    flex-direction: column;
+    textarea {
+        background-color: #31333D; 
+        resize: none;
+        border-radius: 6px;
+        outline: none;
+        margin-bottom: 25px;
+        border: none;
+    }
+    .spantext {
+        color: #FFFFFF;
+    }
+    .spantext {
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
 }
 
-.song {
-    padding: 16px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: #31333D;
-    margin-bottom: 24px;
-    border-radius: 6px;
-    p, h2 {
-        color: white;
-        font-size: 16px;
-    }
-    img {
-        border-radius: 6px;
-    }
+.title-input {
+    font-size: 18px;
+    height: 28px;
+    padding: 8px 8px 4px 8px;
+    color: #FFFFFF;
 }
+
+.text-input {
+    color: #717183;
+    font-size: 18px;
+    padding: 10px 36px 12px 22px;
+    height: 328px;
+}
+
+
 
 .header-wrapper {
     width: 100%;
@@ -26,7 +40,7 @@ h1 {
     justify-content: flex-start;
     align-items: flex-start;
     padding-bottom: 14px;
-    margin-bottom: 24px;
+    margin-bottom: 32px;
     p {
         color: white;
         font-size: 20px;
@@ -44,14 +58,6 @@ h1 {
     border: none;
 }
 
-.search-btn {
-    padding-top: 3px;
-    background-color: transparent;
-    color: white;
-    border: none;
-    margin-left: auto;
-}
-
 .choose-blue-btn {
     width: 100%;
     border-radius: 100px;
@@ -64,3 +70,4 @@ h1 {
     font-weight: 600;
     font-size: 16px;
 }
+
