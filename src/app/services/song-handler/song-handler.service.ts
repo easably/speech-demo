@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Song, Songs } from 'src/app/models/song.model';
+import { Subject } from 'rxjs';
 
 import * as SONGS from 'src/assets/songs.json';
 
@@ -17,7 +18,6 @@ export class SongHandlerService {
   constructor() {}
 
   addSongToList(song : Song) {
-
     this.songList.push(song)
   }
 

@@ -18,6 +18,7 @@ export class MainPageComponent implements OnInit {
   public isListening: boolean = false;
   public dict : string = "";
   public recognizedString : string = "NULL";
+  public isGameEnded = false;
 
   public correctList: number[] = [];
   public wrongList: number[] = [];
@@ -38,7 +39,62 @@ export class MainPageComponent implements OnInit {
     this.setDict()
 
     this.speechApi.speechResult.subscribe(result => {
-      this.song.lyrics[1].status = "completed"
+      if(!this.isGameEnded) {
+        this.analyzeResult(result);
+      } 
+    });
+  }
+
+  setStartState() {  
+    this.songHandler.setCurrentSong(this.activatedRoute.snapshot.queryParams.songIdx);
+    this.song = JSON.parse(JSON.stringify(this.songHandler.currentSong));
+    this.song.lyrics[1].state = "current";
+  }
+
+  startSpeech() {
+    if(!this.isListening) {
+      this.speechApi.startSpeech(this.dict);
+      this.isListening = true;
+    }
+  }
+
+  stopSpeech() {
+    this.speechApi.stopSpeech()
+    this.isListening = false;
+  }
+
+  reloadAll() {
+    window.location.reload()
+  }
+
+  goBack() {
+    this.isGameEnded = true;
+    this.router.navigate(["menu-page"])
+  }
+
+
+  private setDict() { 
+    let set = new Set();
+    this.song.lyrics.forEach(line => {
+      let str = line.text.replace(/[.,!?]/g,'').toLowerCase();
+      let strWords = str.split(" ");
+      str = "";
+      for(let i = 0; i < strWords.length; i++) {
+        if(strWords[i][0] == "\'" || strWords[i][strWords[i].length - 1] == "\'" || (strWords[i][strWords[i].length - 1] == 
+          "s" && strWords[i][strWords[i].length - 2] == "\'")) {
+          strWords[i] = strWords[i].replace("\'", "");
+        }
+        str += i + 1 != strWords.length ? strWords[i] + " ": strWords[i];
+      }
+      set.add(str);
+    }); 
+    set.forEach(element => {
+      this.dict += element + "@ ";
+    });
+  }
+
+  analyzeResult(result) {
+    this.song.lyrics[1].status = "completed"
       let line = this.song.lyrics[1].text.replace(/[.,!?]/g,'').toLowerCase();
       let strWords = line.split(" ");
       line = "";
@@ -84,65 +140,10 @@ export class MainPageComponent implements OnInit {
               wrongList
             }
           });
+          this.isGameEnded = true;
         }
-      }, 1000);  
+      }, 1000); 
       this.cdRef.detectChanges();
       this.isListening = false;
-    });
-  }
-
-  setStartState() {  
-    this.songHandler.setCurrentSong(this.activatedRoute.snapshot.queryParams.songIdx);
-    this.song = JSON.parse(JSON.stringify(this.songHandler.currentSong));
-    this.song.lyrics[1].state = "current";
-    // if(this.song.lyrics.length > 1) {
-    //   this.song.lyrics[1].state = "current";
-    // }
-    // else {
-    //   this.reloadAll()
-    // }
-  }
-
-  startSpeech() {
-    if(!this.isListening) {
-      this.speechApi.startSpeech(this.dict);
-      this.isListening = true;
-    }
-  }
-
-  stopSpeech() {
-    this.speechApi.stopSpeech()
-    this.isListening = false;
-  }
-
-  reloadAll() {
-    window.location.reload()
-  }
-
-  goBack() {
-    this.router.navigate(["menu-page"])
-  }
-
-
-  private setDict() { 
-    console.log(this.activatedRoute.snapshot.queryParamMap)
-    let set = new Set();
-    this.song.lyrics.forEach(line => {
-      let str = line.text.replace(/[.,!?]/g,'').toLowerCase();
-      let strWords = str.split(" ");
-      str = "";
-      for(let i = 0; i < strWords.length; i++) {
-        if(strWords[i][0] == "\'" || strWords[i][strWords[i].length - 1] == "\'" || (strWords[i][strWords[i].length - 1] == 
-          "s" && strWords[i][strWords[i].length - 2] == "\'")) {
-          strWords[i] = strWords[i].replace("\'", "");
-        }
-        str += i + 1 != strWords.length ? strWords[i] + " ": strWords[i];
-      }
-      set.add(str);
-    }); 
-    set.forEach(element => {
-      this.dict += element + "@ ";
-    });
-    console.log(this.dict);
   }
 }
