@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Song, Songs } from 'src/app/models/song.model';
+import { Song } from 'src/app/models/song.model';
 import { SongHandlerService } from 'src/app/services/song-handler/song-handler.service';
 
 @Component({
@@ -17,8 +17,8 @@ export class SongGameEndPageComponent implements OnInit {
 
   public song : Song = this.songHandler.currentSong;
 
-  public correctPercent : string = "";
-  public wrongPercent : string = "";
+  public correctPercent : number;
+  public wrongPercent : number;
 
   public isExtended : boolean = false;
 
@@ -40,8 +40,8 @@ export class SongGameEndPageComponent implements OnInit {
 
   calculateStats() {
     let sum = Number(this.right) + Number(this.wrong);
-    this.correctPercent = Math.ceil(this.right / sum * 100).toString();
-    this.wrongPercent = Math.floor(this.wrong / sum * 100).toString();
+    this.correctPercent = Math.ceil(this.right / sum * 100);
+    this.wrongPercent = Math.floor(this.wrong / sum * 100);
   }
 
   tryAgainSong() {

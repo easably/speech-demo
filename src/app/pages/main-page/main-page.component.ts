@@ -45,11 +45,7 @@ export class MainPageComponent implements OnInit {
     });
   }
 
-  setStartState() {  
-    this.songHandler.setCurrentSong(this.activatedRoute.snapshot.queryParams.songIdx);
-    this.song = JSON.parse(JSON.stringify(this.songHandler.currentSong));
-    this.song.lyrics[1].state = "current";
-  }
+
 
   startSpeech() {
     if(!this.isListening) {
@@ -93,7 +89,13 @@ export class MainPageComponent implements OnInit {
     });
   }
 
-  analyzeResult(result) {
+  private setStartState() {  
+    this.songHandler.setCurrentSong(this.activatedRoute.snapshot.queryParams.songIdx);
+    this.song = JSON.parse(JSON.stringify(this.songHandler.currentSong));
+    this.song.lyrics[1].state = "current";
+  }
+
+  private analyzeResult(result : string) {
     this.song.lyrics[1].status = "completed"
       let line = this.song.lyrics[1].text.replace(/[.,!?]/g,'').toLowerCase();
       let strWords = line.split(" ");

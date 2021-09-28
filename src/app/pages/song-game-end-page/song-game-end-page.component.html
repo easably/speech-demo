@@ -1,8 +1,6 @@
 <div class="header-wrapper">
     <button (click)="backToMenu()" class="back-btn">
-        <svg width="9" height="16" viewBox="0 0 9 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8 15L1 8L8 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
+        <img src="./assets/icons/back-vector.svg">
     </button>
     <p>Список песен</p>
 </div>
@@ -27,8 +25,8 @@
     </div>
 
     <div class="stats">
-        <p *ngIf="correctPercent != '0'" class="correct">{{correctPercent}}% Хорошо</p>
-        <p *ngIf="wrongPercent != '0'" class="wrong">{{wrongPercent}}% Плохо</p>
+        <p *ngIf="correctPercent != 0" class="correct">{{correctPercent}}% Хорошо</p>
+        <p *ngIf="wrongPercent != 0" class="wrong">{{wrongPercent}}% Плохо</p>
     </div>
     <div class="buttons">
         <button class="more-info" (click)="viewDetails()">Подробнее</button>
