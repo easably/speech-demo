@@ -40,8 +40,11 @@ export class SongGameEndPageComponent implements OnInit {
 
   calculateStats() {
     let sum = Number(this.right) + Number(this.wrong);
-    this.correctPercent = Math.ceil(this.right / sum * 100);
-    this.wrongPercent = Math.floor(this.wrong / sum * 100);
+    this.correctPercent = Math.round(this.right / sum * 100);
+    this.wrongPercent = Math.round(this.wrong / sum * 100);
+    if(this.correctPercent + this.wrongPercent != 100) {
+      this.wrongPercent--;
+    }
   }
 
   tryAgainSong() {
