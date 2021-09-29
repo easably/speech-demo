@@ -13,5 +13,6 @@ window.SpeechGrammarList = window?.webkitSpeechGrammarList || window.SpeechGramm
 })
 export class AppComponent implements OnInit {
   ngOnInit() {
+
   }
 }

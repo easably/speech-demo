@@ -1,40 +1,44 @@
-<div class="header-wrapper">
-    <button (click)="backToMenu()" class="back-btn">
-        <img src="./assets/icons/back-vector.svg">
-    </button>
-    <p>Список песен</p>
-</div>
-
-<div *ngIf="isExtended">
-    <stats [correctList]="correctList" [wrongList]="wrongList" [song]="song"></stats>
-</div>
-<div *ngIf="!isExtended">
-    <div *ngIf="right / (right + wrong) >= 0.5" class="congrats-text">
-        <h1 class="congrats">Поздравляю</h1>
-        <p class="text-end">Теперь твое произношение стало лучше</p>
+<div class="page-wrapper">
+    <div class="header-wrapper">
+        <button (click)="backToMenu()" class="back-btn">
+            <img src="./assets/icons/back-vector.svg">
+        </button>
+        <p>Список песен</p>
     </div>
-    <div *ngIf="right / (right + wrong) < 0.5" class="congrats-text">
-        <h1 class="congrats">Ты можешь лучше!</h1>
-        <p class="text-end">Попробуй еще раз!</p>
+    
+    <div class="stats-wrapper" *ngIf="isExtended">
+        <stats [correctList]="correctList" [wrongList]="wrongList" [song]="song"></stats>
+        <button class="choose-blue-btn" (click)="tryAgainSong()">Попробовать снова</button>
     </div>
-
-    <div class="cat">
-        <img *ngIf="right / (right + wrong) == 1" src="assets/happy.png" alt="">
-        <img *ngIf="right / (right + wrong) < 1 && right / (right + wrong) > 0.3" src="assets/ok.png" alt="">
-        <img *ngIf="right / (right + wrong) <= 0.3" src="assets/sad.png" alt="">
-    </div>
-
-    <div class="stats">
-        <p *ngIf="correctPercent != 0" class="correct">{{correctPercent}}% Хорошо</p>
-        <p *ngIf="wrongPercent != 0" class="wrong">{{wrongPercent}}% Плохо</p>
-    </div>
-    <div class="buttons">
-        <button class="more-info" (click)="viewDetails()">Подробнее</button>
-    </div>
-    <div class="buttons">
-        <button class="try-again" (click)="tryAgainSong()">Попробовать снова</button>
-    </div>
-    <div class="buttons">
-        <button class="song-list" (click)="backToMenu()">Список песен</button>
+    
+    <div class="stats-wrapper" *ngIf="!isExtended">
+        <div *ngIf="right / (right + wrong) >= 0.5" class="congrats-text">
+            <h1 class="congrats">Поздравляю</h1>
+            <p class="text-end">Теперь твое произношение стало лучше</p>
+        </div>
+        <div *ngIf="right / (right + wrong) < 0.5" class="congrats-text">
+            <h1 class="congrats">Ты можешь лучше!</h1>
+            <p class="text-end">Попробуй еще раз!</p>
+        </div>
+    
+        <div class="cat">
+            <img *ngIf="right / (right + wrong) == 1" src="assets/happy.png" alt="">
+            <img *ngIf="right / (right + wrong) < 1 && right / (right + wrong) > 0.3" src="assets/ok.png" alt="">
+            <img *ngIf="right / (right + wrong) <= 0.3" src="assets/sad.png" alt="">
+        </div>
+    
+        <div class="stats">
+            <p *ngIf="correctPercent != 0" class="correct">{{correctPercent}}% Хорошо</p>
+            <p *ngIf="wrongPercent != 0" class="wrong">{{wrongPercent}}% Плохо</p>
+        </div>
+        <div class="buttons">
+            <button class="more-info" (click)="viewDetails()">Подробнее</button>
+        </div>
+        <div class="buttons">
+            <button class="try-again" (click)="tryAgainSong()">Попробовать снова</button>
+        </div>
+        <div class="buttons">
+            <button class="song-list" (click)="backToMenu()">Список песен</button>
+        </div>
     </div>
 </div>

@@ -1,6 +1,12 @@
+
+
 h1 {
     text-align: center;
     color: white;
+}
+
+.games-list {
+    overflow: scroll;
 }
 
 .song {
@@ -18,4 +24,8 @@ h1 {
     img {
         border-radius: 6px;
     }
+}
+
+.choose-blue-btn {
+    margin-bottom: 33px;
 }

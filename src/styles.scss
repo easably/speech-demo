@@ -1,5 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('./theme/variables.scss');
+@font-face {
+    font-family: "Roboto";
+    src: url("./assets/fonts/Roboto-Regular.ttf");
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+  }
+:host{
+    background: #4285f4;
+    color:#fff;
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100  
+}
 
 :root {
     // fonts
@@ -20,18 +37,23 @@
     -webkit-user-select: none !important;
     -webkit-touch-callout: none !important;
     -webkit-tap-highlight-color: transparent !important;
+    font-family: 'Roboto', sans-serif;
 }
 
-body {
-    height: 100vh;
-    background-color: var(--background-color);
-    box-sizing: border-box;
-    background-color: #0C0C24;
-}
 
 .wrapper {
-    height: calc(100% - 130px);
-    padding: 26px 16px 42px 16px;
+    height: calc(var(--vh, 1vh) * 100);
+    padding: 26px 16px 24px 16px;
+    box-sizing: border-box;
+    background-color: #0C0C24;
+    overflow: scroll;
+}
+
+.page-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
 }
 
 .header-wrapper {
@@ -43,7 +65,7 @@ body {
     p {
         color: white;
         font-size: 20px;
-        font-weight: 700;
+        font-weight: 800;
         line-height: 24px;
         letter-spacing: 1px;
         margin-left: 17px;
@@ -69,7 +91,6 @@ body {
     width: 100%;
     border-radius: 100px;
     background: linear-gradient(45.4deg, #007BD5 0%, #3DA8FF 53.5%, #00B9F1 92.54%);
-    margin: 0 0 33px 0;
     padding: 15px;
     border: none;
     color: #FFFFFF;

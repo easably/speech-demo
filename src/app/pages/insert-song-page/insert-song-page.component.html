@@ -1,14 +1,16 @@
-<div class="header-wrapper">
-    <button (click)="goBack()" class="back-btn">
-        <img src="/src/assets/icons/back-vector.svg" alt="">            
-    </button>
-    <p>Выбери песню</p>
+<div class="page-wrapper">
+    <div class="header-wrapper">
+        <button (click)="goBack()" class="back-btn">
+            <img src="/src/assets/icons/back-vector.svg" alt="">            
+        </button>
+        <p>Выбери песню</p>
+    </div>
+    <div class="context">
+        <p class="spantext">Название песни</p>
+        <textarea class="title-input" [(ngModel)]="songTitle"></textarea>  
+        <p class="spantext">Текст песни</p>
+        <textarea class="text-input" [(ngModel)]="lyrics"></textarea>
+    </div>
+    
+    <button (click)="start()" class="choose-blue-btn">Начать</button>    
 </div>
-<div class="context">
-    <p class="spantext">Название песни</p>
-    <textarea class="title-input" [(ngModel)]="songTitle"></textarea>  
-    <p class="spantext">Текст песни</p>
-    <textarea class="text-input" [(ngModel)]="lyrics"></textarea>
-</div>
-
-<button (click)="start()" class="choose-blue-btn">Начать</button>

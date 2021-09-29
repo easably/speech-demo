@@ -1,30 +1,32 @@
-<div class="header-wrapper">
-    <button (click)="goBack()" class="back-btn">
-       <img src="./assets/icons/back-vector.svg">           
-    </button>
-    <p>{{song.artist}} - {{song.title}}</p>  
-</div>
-<div class="game-screen">
-    <div class="song-wrapper">        
-        <ul class="song-lines">
-            <li *ngFor="let line of song.lyrics">
-                <song-line [line]="line"></song-line>
-            </li>
-        </ul>
+<div class="page-wrapper">
+    <div class="header-wrapper">
+        <button (click)="goBack()" class="back-btn">
+           <img src="./assets/icons/back-vector.svg">           
+        </button>
+        <p>{{song.artist}} - {{song.title}}</p>  
     </div>
+    <div class="game-screen">
+        <div class="song-wrapper">        
+            <ul class="song-lines">
+                <li *ngFor="let line of song.lyrics">
+                    <song-line [line]="line"></song-line>
+                </li>
+            </ul>
+        </div>
+        
+        <speech-button (touchstart)="isListening ? null : startSpeech()"
+                       (touchend)="stopSpeech()"
+                       [isActive]="isListening"
+        ></speech-button>
     
-    <speech-button (touchstart)="isListening ? null : startSpeech()"
-                   (touchend)="stopSpeech()"
-                   [isActive]="isListening"
-    ></speech-button>
-
-    <song-progress></song-progress>
-
+        <song-progress></song-progress>
     
-    <div class="debug">
-        <button (click)="reloadAll()">Restart</button>
-        <p>Recognized:</p>
-        <p>{{recognizedString}}</p>
+        
+        <!-- <div class="debug">
+            <button (click)="reloadAll()">Restart</button>
+            <p>Recognized:</p>
+            <p>{{recognizedString}}</p>
+        </div> --> 
     </div>
-    
 </div>
+

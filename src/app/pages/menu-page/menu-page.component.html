@@ -1,17 +1,19 @@
-<div class="header-wrapper">
-	<button class="back-btn">
-		<img src="./assets/icons/back-vector.svg">
-	</button>
-	<p>Выбери песню</p>
-	<button class="search-btn">
-		<img src="./assets/icons/search-btn.svg">
-	</button>
-</div>
-<button (click)="insertText()" class="choose-blue-btn">Добавить свой текст</button>
-
-<div class="games-list">
-	<div class="song" (click)="goGame(i)" *ngFor="let song of songs; let i = index">
-		<p>{{song.artist}} - {{song.title}}</p>
-		<img src={{song.label}} alt="">
+<div class="page-wrapper">
+	<div class="header-wrapper">
+		<button class="back-btn">
+			<img src="./assets/icons/back-vector.svg">
+		</button>
+		<p>Выбери песню</p>
+		<button class="search-btn">
+			<img src="./assets/icons/search-btn.svg">
+		</button>
+	</div>
+	<button (click)="insertText()" class="choose-blue-btn">Добавить свой текст</button>
+	
+	<div class="games-list">
+		<div class="song" (click)="goGame(i)" *ngFor="let song of songs; let i = index">
+			<p>{{song.artist}} - {{song.title}}</p>
+			<img src={{song.label}} alt="">
+		</div>
 	</div>
 </div>

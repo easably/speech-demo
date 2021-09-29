@@ -80,3 +80,16 @@ h1 {
     color: #E6E6E6;
     font-size: 10px;
 }
+
+.stats-wrapper {
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+stats {
+    overflow: scroll;
+    margin-bottom: 10px;
+}
