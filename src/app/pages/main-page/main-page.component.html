@@ -20,7 +20,8 @@
         ></speech-button>
     
         <song-progress></song-progress>
-    
+        
+        <progress-bar [progress]="currectLine" [total]="songLength"></progress-bar>
         
         <!-- <div class="debug">
             <button (click)="reloadAll()">Restart</button>

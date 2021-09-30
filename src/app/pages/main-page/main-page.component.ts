@@ -14,10 +14,12 @@ import { SpeechApiService } from 'src/app/services/speech-api/speech-api.service
 export class MainPageComponent implements OnInit {
 
   public song : Song;
+  public songLength : number;
 
   public isListening: boolean = false;
   public dict : string = "";
   public recognizedString : string = "NULL";
+
   public isGameEnded = false;
 
   public correctList: number[] = [];
@@ -44,8 +46,6 @@ export class MainPageComponent implements OnInit {
       } 
     });
   }
-
-
 
   startSpeech() {
     if(!this.isListening) {
@@ -92,6 +92,7 @@ export class MainPageComponent implements OnInit {
   private setStartState() {  
     this.songHandler.setCurrentSong(this.activatedRoute.snapshot.queryParams.songIdx);
     this.song = JSON.parse(JSON.stringify(this.songHandler.currentSong));
+    this.songLength = this.song.lyrics.length; 
     this.song.lyrics[1].state = "current";
   }
 

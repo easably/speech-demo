@@ -16,6 +16,7 @@ import { SongGameEndPageComponent } from './pages/song-game-end-page/song-game-e
 import { StatsComponent } from './components/stats/stats.component';
 import { InsertSongPageComponent } from './pages/insert-song-page/insert-song-page.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
     SongGameEndPageComponent,
     StatsComponent,
     InsertSongPageComponent,
+    ProgressBarComponent,
     
   ],
   imports: [
