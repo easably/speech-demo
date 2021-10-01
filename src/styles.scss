@@ -4,9 +4,17 @@
     font-family: "Roboto";
     src: url("./assets/fonts/Roboto-Regular.ttf");
     font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "RobotoMedium";
+    src: url("./assets/fonts/Roboto-Medium.ttf");
+    font-style: normal;
     font-weight: 500;
     font-display: swap;
   }
+
 :host{
     background: #4285f4;
     color:#fff;
@@ -65,7 +73,7 @@
     p {
         color: white;
         font-size: 20px;
-        font-weight: 800;
+        font-family: "RobotoMedium";
         line-height: 24px;
         letter-spacing: 1px;
         margin-left: 17px;
@@ -95,7 +103,7 @@
     border: none;
     color: #FFFFFF;
     text-transform: uppercase;
-    font-weight: 600;
+    font-family: "RobotoMedium";
     font-size: 16px;
 }
 

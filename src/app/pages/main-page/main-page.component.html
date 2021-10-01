@@ -13,21 +13,20 @@
                 </li>
             </ul>
         </div>
+        <div class="debug">
+            <p>Recognized: {{recognizedString}}</p>
+        </div>
         
         <speech-button (touchstart)="isListening ? null : startSpeech()"
                        (touchend)="stopSpeech()"
                        [isActive]="isListening"
         ></speech-button>
     
-        <song-progress></song-progress>
+        <!-- <song-progress></song-progress> -->
         
         <progress-bar [progress]="currectLine" [total]="songLength"></progress-bar>
         
-        <!-- <div class="debug">
-            <button (click)="reloadAll()">Restart</button>
-            <p>Recognized:</p>
-            <p>{{recognizedString}}</p>
-        </div> --> 
+ 
     </div>
 </div>
 

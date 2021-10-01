@@ -28,10 +28,17 @@ export class InsertSongPageComponent implements OnInit {
 
   start() { 
     let songInfo: string[]
+
+    if(this.songTitle.length > 40) {
+      alert("Название песни должно быть не больше 40 символов")
+      return;
+    }
+
     try {
       songInfo = this.songTitle.split(" - ");
     } catch (e) {
       alert("Введите название песни")
+      return;
     }
 
     let lyricsArr : string[];
@@ -39,6 +46,7 @@ export class InsertSongPageComponent implements OnInit {
       lyricsArr = this.lyrics.split(/\n\n|\r\r/g);
     } catch (e) {
       alert("Введите слова песни")
+      return;
     }
     let lyricsLines : LyricsLine[] = [
       {
@@ -48,13 +56,16 @@ export class InsertSongPageComponent implements OnInit {
       },
     ];
     lyricsArr.forEach(line => {
-      lyricsLines.push(
-        {
-          text : line,
-          status : null,
-          state : "pending"
-        }
-      )
+      if(line.trim().length && line.length != 0) {
+        lyricsLines.push(
+          {
+            text : line,
+            status : null,
+            state : "pending"
+          }
+        )
+      }
+
     });
 
     let song : Song = {

@@ -6,21 +6,22 @@
 
 .game-screen {
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     background-color: #0C0C24;
 }
 
-.song-wrapper {
-    margin-top: 32px;
+.header-wrapper {
+    margin-bottom: 32px;
+    padding-bottom: 14px;
 }
 
 .song-lines {
     width: 100%;
-    height: 192px;
-    margin-top: 48px;
+    height: 164px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -54,9 +55,14 @@ song-title {
 
 .debug {
     color: white;
+    font-size: 12px;
 }
 
 progress-bar {
     max-width: 200px;
     width: 100%;
+}
+
+speech-button {
+    margin-top: 60px;
 }
