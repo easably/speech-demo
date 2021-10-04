@@ -23,6 +23,8 @@
     "@capacitor/android": "^3.2.0",
     "@capacitor/cli": "^3.2.0",
     "@capacitor/core": "^3.2.4",
+    "lottie-web": "^5.7.13",
+    "ngx-lottie": "^7.0.4",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
     "zone.js": "~0.11.4"

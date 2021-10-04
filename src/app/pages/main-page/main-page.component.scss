@@ -3,6 +3,10 @@
     justify-content: space-between;
 }
 
+.page-wrapper {
+    overflow: hidden;
+}
+
 
 .game-screen {
     width: 100%;
@@ -63,6 +67,24 @@ progress-bar {
     width: 100%;
 }
 
+
 speech-button {
-    margin-top: 60px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+.micro-container {
+    position: relative;
+}
+.micro {
+    z-index: 9999;
+    position: absolute;
+    border-radius: 50%;
+    top: 51%;
+    left: 50%;
+    transform: translate(-50%, -46%);
+    width: 65px;
+    height: 65px;
 }

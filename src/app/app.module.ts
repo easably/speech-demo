@@ -17,6 +17,14 @@ import { StatsComponent } from './components/stats/stats.component';
 import { InsertSongPageComponent } from './pages/insert-song-page/insert-song-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
+
+// Note we need a separate function as it's required
+// by the AOT compiler.
+export function playerFactory() { // add this line
+  return player // add this line
+}
 
 @NgModule({
   declarations: [
@@ -32,13 +40,13 @@ import { ProgressBarComponent } from './components/progress-bar/progress-bar.com
     StatsComponent,
     InsertSongPageComponent,
     ProgressBarComponent,
-    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    LottieModule.forRoot({ player: playerFactory }),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable

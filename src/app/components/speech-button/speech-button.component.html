@@ -1,3 +1,11 @@
-<button [ngClass]="isActive ? 'button_active' : ''">
+<!-- <button *ngIf="!isActive">
     <img src="/assets/icons/mic.svg">
-</button>
+</button> -->
+<ng-lottie 
+           width="300px"
+           height="300px"
+           [options]="options" 
+           (animationCreated)="animationCreated($event)">
+</ng-lottie>
+
+

@@ -17,12 +17,15 @@
             <p>Recognized: {{recognizedString}}</p>
         </div>
         
-        <speech-button (touchstart)="isListening ? null : startSpeech()"
+        <div class="micro-container">
+            <speech-button  [isActive]="isListening"></speech-button>
+            <div class="micro" (touchstart)="startSpeech()" (touchend)="stopSpeech()" >
+            </div>
+        </div>
+        <!-- <speech-button (touchstart)="isListening ? null : startSpeech()"
                        (touchend)="stopSpeech()"
                        [isActive]="isListening"
-        ></speech-button>
-    
-        <!-- <song-progress></song-progress> -->
+        ></speech-button> -->
         
         <progress-bar [progress]="currectLine - 1" [total]="songLength - 1"></progress-bar>
         
