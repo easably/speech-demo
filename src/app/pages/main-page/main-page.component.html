@@ -22,14 +22,8 @@
             <div class="micro" (touchstart)="startSpeech()" (touchend)="stopSpeech()" >
             </div>
         </div>
-        <!-- <speech-button (touchstart)="isListening ? null : startSpeech()"
-                       (touchend)="stopSpeech()"
-                       [isActive]="isListening"
-        ></speech-button> -->
-        
+
         <progress-bar [progress]="currectLine - 1" [total]="songLength - 1"></progress-bar>
-        
- 
     </div>
 </div>
 

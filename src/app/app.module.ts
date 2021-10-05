@@ -6,10 +6,8 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { MainPageComponent } from './pages/main-page/main-page.component';
-import { ScoreComponent } from './components/score/score.component';
 import { SongTitleComponent } from './components/song-title/song-title.component';
 import { SpeechButtonComponent } from './components/speech-button/speech-button.component';
-import { SongProgressComponent } from './components/song-progress/song-progress.component';
 import { SongLineComponent } from './components/song-line/song-line.component';
 import { MenuPageComponent } from './pages/menu-page/menu-page.component';
 import { SongGameEndPageComponent } from './pages/song-game-end-page/song-game-end-page.component';
@@ -30,10 +28,8 @@ export function playerFactory() { // add this line
   declarations: [
     AppComponent,
     MainPageComponent,
-    ScoreComponent,
     SongTitleComponent,
     SpeechButtonComponent,
-    SongProgressComponent,
     SongLineComponent,
     MenuPageComponent,
     SongGameEndPageComponent,
