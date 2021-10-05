@@ -1,29 +1,36 @@
 <div class="page-wrapper">
     <div class="header-wrapper">
         <button (click)="goBack()" class="back-btn">
-           <img src="./assets/icons/back-vector.svg">           
+            <img src="./assets/icons/back-vector.svg">
         </button>
-        <p>{{song.artist}} - {{song.title}}</p>  
+        <p>{{song.artist}} - {{song.title}}</p>
     </div>
     <div class="game-screen">
-        <div class="song-wrapper">        
-            <ul class="song-lines">
-                <li *ngFor="let line of song.lyrics">
-                    <song-line [line]="line"></song-line>
-                </li>
-            </ul>
+        <div class="song-lines">
+            <div *ngFor="let line of song.lyrics" class="song-line-wrapper"
+                [ngSwitch]="line.state"
+                [attr.data-status]="line.status">
+                <div [@completedLine]="completedLineState" *ngSwitchCase="'completed'" class="completed">
+                    {{line.text}}
+                </div>
+                <div [@currentLine]="currentLineState" *ngSwitchCase="'current'" class="current">
+                    {{line.text}}
+                </div>
+                <div [@preparedLine]="preparedLineState" *ngSwitchCase="'prepared'" class="prepared">
+                    {{line.text}}
+                </div>
+            </div>
         </div>
         <div class="debug">
             <p>Recognized: {{recognizedString}}</p>
         </div>
-        
+
         <div class="micro-container">
-            <speech-button  [isActive]="isListening"></speech-button>
-            <div class="micro" (touchstart)="startSpeech()" (touchend)="stopSpeech()" >
+            <speech-button [isActive]="isListening"></speech-button>
+            <div class="micro" (touchstart)="startSpeech()" (touchend)="stopSpeech()">
             </div>
         </div>
 
         <progress-bar [progress]="currectLine - 1" [total]="songLength - 1"></progress-bar>
     </div>
 </div>
-

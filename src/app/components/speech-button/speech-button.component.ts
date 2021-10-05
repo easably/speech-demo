@@ -29,7 +29,7 @@ export class SpeechButtonComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  ngOnChanges() { //refactor
+  ngOnChanges() { //refactorw
     if(this.isActive) {
       this.play();
     } else {

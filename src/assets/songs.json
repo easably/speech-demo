@@ -6,9 +6,9 @@
             "label": "./assets/song-icons/1.svg",
             "lyrics": [
                 {
-                    "text": "Hidden",
+                    "text": "",
                     "status": null,
-                    "state": "hidden"
+                    "state": "pending"
                 },
                 {
                     "text": "Buddy you are a boy, make a big noise",
@@ -100,9 +100,9 @@
             "label": "./assets/song-icons/2.svg",
             "lyrics" : [
                 {
-                    "text": "Hidden",
+                    "text": "",
                     "status": null,
-                    "state": "hidden"
+                    "state": "pending"
                 },
                 {
                     "text": "Would you know my name?",
@@ -278,9 +278,9 @@
             "label": "./assets/song-icons/2.svg",
             "lyrics" : [
                 {
-                    "text": "Hidden",
+                    "text": "",
                     "status": null,
-                    "state": "hidden"
+                    "state": "pending"
                 },
                 {
                     "text": "We're no strangers to love",

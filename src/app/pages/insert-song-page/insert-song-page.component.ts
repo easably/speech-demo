@@ -52,9 +52,9 @@ export class InsertSongPageComponent implements OnInit {
     }
     let lyricsLines : LyricsLine[] = [
       {
-        text : "Hidden",
+        text : "",
         status : null,
-        state : "hidden"
+        state : "pending"
       },
     ];
     lyricsArr.forEach(line => {

@@ -13,10 +13,11 @@ import { MenuPageComponent } from './pages/menu-page/menu-page.component';
 import { SongGameEndPageComponent } from './pages/song-game-end-page/song-game-end-page.component';
 import { StatsComponent } from './components/stats/stats.component';
 import { InsertSongPageComponent } from './pages/insert-song-page/insert-song-page.component';
-import { HttpClientModule } from '@angular/common/http';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LottieModule } from 'ngx-lottie';
 import player from 'lottie-web';
+import { CatReactionComponent } from './components/cat-reaction/cat-reaction.component';
 
 // Note we need a separate function as it's required
 // by the AOT compiler.
@@ -36,12 +37,13 @@ export function playerFactory() { // add this line
     StatsComponent,
     InsertSongPageComponent,
     ProgressBarComponent,
+    CatReactionComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule,
+    BrowserAnimationsModule,
     LottieModule.forRoot({ player: playerFactory }),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
