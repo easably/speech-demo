@@ -74,8 +74,8 @@ export class InsertSongPageComponent implements OnInit {
       alert("Максимальная длинна cтроки не должна быть больше 10 слов")
       return;
     }
-    if(wordLengthMax > 30) {
-      alert("Максимальная длинна слова не должна быть больше 30 символов")
+    if(wordLengthMax > 21) {
+      alert("Максимальная длинна слова не должна быть больше 21 символа")
       return;
     }
 
