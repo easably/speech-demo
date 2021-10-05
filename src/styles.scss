@@ -54,14 +54,14 @@
     padding: 26px 16px 24px 16px;
     box-sizing: border-box;
     background-color: #0C0C24;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .page-wrapper {
     height: 100%;
     display: flex;
     flex-direction: column;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .header-wrapper {

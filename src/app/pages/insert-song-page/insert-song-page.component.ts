@@ -14,6 +14,8 @@ export class InsertSongPageComponent implements OnInit {
   public songTitle : string
   public lyrics : string;
 
+  public currrentLength : number;
+
   constructor(
     private songHandler : SongHandlerService,
     private router: Router,

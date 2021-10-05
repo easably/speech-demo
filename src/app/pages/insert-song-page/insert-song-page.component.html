@@ -7,10 +7,12 @@
     </div>
     <div class="context">
         <p class="spantext">Название песни</p>
-        <textarea class="title-input" [(ngModel)]="songTitle"></textarea>  
+        <textarea maxlength="40" class="title-input" [(ngModel)]="songTitle"></textarea>  
         <p class="spantext">Текст песни</p>
-        <textarea class="text-input" [(ngModel)]="lyrics"></textarea>
+        <div class="text-input-wrapper">
+            <textarea maxlength="800" class="text-input" [(ngModel)]="lyrics"></textarea>
+            <span class="symbols-counter">({{lyrics?.length || 0}}/800 символов)</span>
+        </div>
     </div>
-    
     <button (click)="start()" class="choose-blue-btn">Начать</button>    
 </div>

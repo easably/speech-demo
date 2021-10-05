@@ -1,35 +1,72 @@
 .context {
     display: flex;
     flex-direction: column;
+    margin-bottom: 26px;
+    position: relative;
     textarea {
+        box-sizing: border-box;
         background-color: #31333D; 
         resize: none;
         border-radius: 6px;
         outline: none;
-        margin-bottom: 25px;
         border: none;
     }
     .spantext {
         color: #FFFFFF;
-    }
-    .spantext {
         font-size: 12px;
         margin-bottom: 8px;
     }
 }
 
 .title-input {
+    width: 100%;
     font-size: 18px;
     height: 28px;
     padding: 8px 8px 4px 8px;
     color: #FFFFFF;
+    margin-bottom: 25px;
+}
+.text-input-wrapper {
+    background-color: #31333D; 
+    padding: 10px 10px 12px 22px;
+    border-radius: 6px;
 }
 
 .text-input {
+    width: 100%;
     color: #717183;
     font-size: 18px;
-    padding: 10px 36px 12px 22px;
+    padding-right: 23px;
     height: 328px;
+}
+
+.symbols-counter {
+    text-align: right;
+    color:#A9A9A9;
+    font-size: 10px;
+    position: absolute;
+    bottom: 10px;
+    right: 36px;
+}
+
+textarea::-webkit-scrollbar {
+    width: 4px;
+    position: absolute;
+    right: 50px;
+}
+ 
+textarea::-webkit-scrollbar-track {
+    margin: 15px;
+
+    background: #414351;
+    border-radius: 8px;
+}
+ 
+textarea::-webkit-scrollbar-thumb {
+    margin: 20px;
+    border-radius: 8px;
+    background: #C8C8C8;
+
 }
 
 
