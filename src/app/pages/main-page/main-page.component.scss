@@ -85,6 +85,8 @@ speech-button {
     display: flex;
     align-items: center;
     max-width: 320px;
+    word-wrap: break-word;
+    word-break: break-all; /* более приоритетно */
     .current {
         height: 88px;
     }
@@ -102,7 +104,7 @@ speech-button {
 
 .song-line-wrapper[data-status="completed"] {
     .current {
-        color: var(--blue);  
+        color: #4EC6E4;  
     }
 }
 

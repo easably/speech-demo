@@ -155,7 +155,6 @@ export class MainPageComponent implements OnInit {
     setTimeout(() => {
       // this.song.lyrics[1].status = null;
       this.changeLine();
-
     }, 500);
 
     this.cdRef.detectChanges();

@@ -33,6 +33,8 @@ export class ProgressBarComponent implements OnInit {
   }
 
   ngOnChanges() {
-    this.calculatedLength = (this.progress / this.total) * 100;
+    if(this.progress <= this.total) {
+      this.calculatedLength = (this.progress / this.total) * 100;
+    }
   }
 }

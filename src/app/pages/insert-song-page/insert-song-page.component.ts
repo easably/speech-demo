@@ -45,6 +45,11 @@ export class InsertSongPageComponent implements OnInit {
       return;
     }
 
+    if(this.lyrics.replace(/\n|\r/g, "").length == 0) {
+      alert("Введите слова песни")
+      return;
+    }
+
     //full lyrics validity checker
     try {
       lyricsArr = this.lyrics.split(/\n\n|\r\r/g);
@@ -74,10 +79,10 @@ export class InsertSongPageComponent implements OnInit {
       alert("Максимальная длинна cтроки не должна быть больше 10 слов")
       return;
     }
-    if(wordLengthMax > 21) {
-      alert("Максимальная длинна слова не должна быть больше 21 символа")
-      return;
-    }
+    // if(wordLengthMax > 30) {
+    //   alert("Максимальная длинна слова не должна быть больше 21 символа")
+    //   return;
+    // }
 
     //construct new song
     let lyricsLines: LyricsLine[] = [
