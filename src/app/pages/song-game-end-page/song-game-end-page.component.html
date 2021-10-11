@@ -20,16 +20,12 @@
             <h1 class="congrats">Ты можешь лучше!</h1>
             <p class="text-end">Попробуй еще раз!</p>
         </div>
-    
-        <div class="cat">
-            <img *ngIf="right / (right + wrong) == 1" src="assets/happy.png" alt="">
-            <img *ngIf="right / (right + wrong) < 1 && right / (right + wrong) > 0.3" src="assets/ok.png" alt="">
-            <img *ngIf="right / (right + wrong) <= 0.3" src="assets/sad.png" alt="">
-        </div>
+
+        <cat-reaction [percent]="correctPercent"></cat-reaction>
     
         <div class="stats">
-            <p *ngIf="correctPercent != 0" class="correct">{{correctPercent}}% Хорошо</p>
-            <p *ngIf="wrongPercent != 0" class="wrong">{{wrongPercent}}% Плохо</p>
+            <p *ngIf="correctPercent != 0" class="correct">{{this.shownCorrectPercent}}% Хорошо</p>
+            <p *ngIf="wrongPercent != 0" class="wrong">{{this.shownWrongPercent}}% Плохо</p>
         </div>
         <div class="buttons">
             <button class="more-info" (click)="viewDetails()">Подробнее</button>

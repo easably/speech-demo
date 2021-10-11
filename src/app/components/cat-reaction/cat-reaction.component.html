@@ -1,1 +1,9 @@
-<p>cat-reaction works!</p>
+<div class="cat-wrapper">
+  <circle-progress class="circle-animation" [percent]="percent" [maxPercent]="1000" [space]="-3" [radius]="61" [innerStrokeWidth]="3"
+    [outerStrokeWidth]="3" [outerStrokeColor]="'#31BB9A'" [showInnerStroke]="true" [showZeroOuterStroke]="false"
+    [innerStrokeColor]="'#ff0000'" [animation]="true" [showTitle]="false" [showSubtitle]="false" [showUnits]="false"
+    [animationDuration]="percent * 10">
+  </circle-progress>
+  <ng-lottie class="cat-animation" width="160px" height="160px" [options]="options" (animationCreated)="animationCreated($event)">
+  </ng-lottie>
+</div>

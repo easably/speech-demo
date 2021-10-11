@@ -16,7 +16,8 @@ export class SpeechButtonComponent implements OnInit {
 
   options: AnimationOptions = {
     path: './assets/animations/micro.json',
-    autoplay: false 
+    autoplay: false,
+    initialSegment: [10, 75]
   };
 
   animationCreated(animationItem: AnimationItem): void {
@@ -29,7 +30,7 @@ export class SpeechButtonComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  ngOnChanges() { //refactorw
+  ngOnChanges() { //refactor
     if(this.isActive) {
       this.play();
     } else {

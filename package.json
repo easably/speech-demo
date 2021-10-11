@@ -24,6 +24,7 @@
     "@capacitor/cli": "^3.2.0",
     "@capacitor/core": "^3.2.4",
     "lottie-web": "^5.7.13",
+    "ng-circle-progress": "^1.6.0",
     "ngx-lottie": "^7.0.4",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",

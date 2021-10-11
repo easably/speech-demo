@@ -12,37 +12,55 @@ export class SongGameEndPageComponent implements OnInit {
 
   public right = Number(this.activatedRoute.snapshot.queryParams.right)
   public wrong = Number(this.activatedRoute.snapshot.queryParams.wrong)
-  public correctList : string[] = this.activatedRoute.snapshot.queryParams.correctList
-  public wrongList : string[] = this.activatedRoute.snapshot.queryParams.wrongList
+  public correctList: string[] = this.activatedRoute.snapshot.queryParams.correctList
+  public wrongList: string[] = this.activatedRoute.snapshot.queryParams.wrongList
 
-  public song : Song = this.songHandler.currentSong;
+  public song: Song = this.songHandler.currentSong;
 
-  public correctPercent : number;
-  public wrongPercent : number;
+  public correctPercent: number;
+  public wrongPercent: number;
+  public shownCorrectPercent: number = 0;
+  public shownWrongPercent: number = 0;
 
-  public isExtended : boolean = false;
+  public isExtended: boolean = false;
+
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private songHandler : SongHandlerService
+    private songHandler: SongHandlerService
   ) { }
 
   ngOnInit(): void {
     this.calculateStats()
-    this.debug()
+    this.animatePercents()
   }
 
-  debug() {
-    console.log(this.activatedRoute.snapshot.queryParams.wrongList)
-    console.log(this.activatedRoute.snapshot.queryParams.correctList)
+  animatePercents() {
+    setTimeout(() => {
+      let wrongInterval = setInterval(() => {
+        if (this.shownWrongPercent < this.wrongPercent) {
+          this.shownWrongPercent++;
+        } else {
+          clearInterval(wrongInterval)
+        }
+      }, 10)
+      let correctInterval = setInterval(() => {
+        if (this.shownCorrectPercent < this.correctPercent) {
+          this.shownCorrectPercent++;
+        } else {
+          clearInterval(correctInterval)
+        }
+      }, 10)
+    }, 100)
   }
 
   calculateStats() {
     let sum = Number(this.right) + Number(this.wrong);
     this.correctPercent = Math.round(this.right / sum * 100);
     this.wrongPercent = Math.round(this.wrong / sum * 100);
-    if(this.correctPercent + this.wrongPercent != 100) {
+    console.log(this.wrongPercent)
+    if (this.correctPercent + this.wrongPercent != 100) {
       this.wrongPercent--;
     }
   }
@@ -57,11 +75,11 @@ export class SongGameEndPageComponent implements OnInit {
   }
 
   backToMenu() {
-    if(!this.isExtended) {
+    if (!this.isExtended) {
       this.router.navigate(["menu-page"])
     } else {
       this.isExtended = false;
-    } 
+    }
   }
 
   viewDetails() {
