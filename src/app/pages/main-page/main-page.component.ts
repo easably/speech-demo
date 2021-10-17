@@ -54,7 +54,7 @@ export class MainPageComponent implements OnInit {
 
   public correctList: number[] = [];
   public wrongList: number[] = [];
-  public currectLine = 1;
+  public currentLine = 1;
 
   constructor(
     private speechApi: SpeechApiService,
@@ -142,13 +142,13 @@ export class MainPageComponent implements OnInit {
     this.recognizedString = result;
     if (result === line) {
       //this.song.lyrics[1].status = 'right';
-      this.correctList.push(this.currectLine)
-      this.currectLine++;
+      this.correctList.push(this.currentLine)
+      this.currentLine++;
       this.songProgressService.addRight();
     } else {
       //this.song.lyrics[1].status = 'wrong';
-      this.wrongList.push(this.currectLine)
-      this.currectLine++;
+      this.wrongList.push(this.currentLine)
+      this.currentLine++;
       this.songProgressService.addWrong();
     }
 

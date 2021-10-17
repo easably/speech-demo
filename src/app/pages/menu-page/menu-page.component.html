@@ -9,7 +9,7 @@
 		</button>
 	</div>
 	<button (click)="insertText()" class="choose-blue-btn">Добавить свой текст</button>
-	
+
 	<div class="games-list">
 		<div class="song" (click)="goGame(i)" *ngFor="let song of songs; let i = index">
 			<p>{{song.artist}} - {{song.title}}</p>

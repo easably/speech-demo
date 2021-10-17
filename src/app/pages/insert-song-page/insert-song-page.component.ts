@@ -14,7 +14,7 @@ export class InsertSongPageComponent implements OnInit {
   public songTitle: string
   public lyrics: string;
 
-  public currrentLength: number;
+  public currentLength: number;
 
   constructor(
     private songHandler: SongHandlerService,
@@ -63,11 +63,13 @@ export class InsertSongPageComponent implements OnInit {
     let wordLengthMax = 0;
     let maxLineLength = 0;
     lyricsArr.forEach(line => {
-      let lineWordsCounter = 0; 
+      let lineWordsCounter = 0;
       line.split(" ").forEach(word => {
+        console.log(word.length)
+        console.log(word.trim().length)
         lineWordsCounter++;
-        if(word.length > wordLengthMax) {
-          wordLengthMax = word.length;
+        if(word.trim().length > wordLengthMax) {
+          wordLengthMax = word.trim().length;
         }
       });
       if(lineWordsCounter > maxLineLength) {
@@ -75,14 +77,15 @@ export class InsertSongPageComponent implements OnInit {
       }
     });
 
+    if(wordLengthMax > 20) {
+      alert("Максимальная длинна cлова не должна быть больше 20 символов")
+      return;
+    }
+
     if(maxLineLength > 10) {
       alert("Максимальная длинна cтроки не должна быть больше 10 слов")
       return;
     }
-    // if(wordLengthMax > 30) {
-    //   alert("Максимальная длинна слова не должна быть больше 21 символа")
-    //   return;
-    // }
 
     //construct new song
     let lyricsLines: LyricsLine[] = [
@@ -113,6 +116,7 @@ export class InsertSongPageComponent implements OnInit {
     };
 
     this.songHandler.addSongToList(song)
+
     let songIdx = this.songHandler.songList.length - 1
     this.router.navigate(['/main-page'], {
       queryParams: {

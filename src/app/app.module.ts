@@ -18,7 +18,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LottieModule } from 'ngx-lottie';
 import player from 'lottie-web';
 import { CatReactionComponent } from './components/cat-reaction/cat-reaction.component';
-
 import { NgCircleProgressModule } from 'ng-circle-progress';
 
 // Note we need a separate function as it's required
@@ -47,7 +46,7 @@ export function playerFactory() { // add this line
     FormsModule,
     BrowserAnimationsModule,
     NgCircleProgressModule.forRoot({
-      
+
     }),
     LottieModule.forRoot({ player: playerFactory }),
     ServiceWorkerModule.register('ngsw-worker.js', {

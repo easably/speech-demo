@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Song, Songs } from 'src/app/models/song.model';
-import { Subject } from 'rxjs';
+import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
+import { Storage } from '@capacitor/storage';
 
 import * as SONGS from 'src/assets/songs.json';
 
@@ -15,10 +16,40 @@ export class SongHandlerService {
   public songList: Song[] = this.songsContainer.songs;
   public currentSong: Song;
 
-  constructor() {}
+  constructor() {
+    console.log("constructed")
+    let keys : string[];
+    Storage.keys().then(keysObj => {
+      keys = keysObj.keys
+      console.log(keys)
+      keys = keys.sort((left,right) => Number(left) - Number(right))
+      if(keys != null) {
+        keys.forEach(key => {
+          console.log(key)
+          Storage.get({ key: key }).then(val => {
+            console.log(JSON.parse(val.value));
+            if(val.value != null) {
+              this.songList.push(JSON.parse(val.value))
+            }
+          });
+        })
+      }
+    })
+  }
 
-  addSongToList(song : Song) {
-    this.songList.push(song)
+  async addSongToList(song : Song) {
+    console.log(JSON.stringify(song));
+    let songId = 0;
+    let amountOfKeys = 0;
+    Storage.keys().then(keysObj => {
+      amountOfKeys = keysObj.keys.length
+      songId = amountOfKeys + 1
+      Storage.set({
+        key: `${songId}`,
+        value: JSON.stringify(song),
+      });
+    })
+    this.songList.push(song);
   }
 
   setCurrentSong(idx : number) {
