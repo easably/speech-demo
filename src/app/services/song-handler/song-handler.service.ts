@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Song, Songs } from 'src/app/models/song.model';
-import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 import { Storage } from '@capacitor/storage';
 
 import * as SONGS from 'src/assets/songs.json';
@@ -17,15 +16,12 @@ export class SongHandlerService {
   public currentSong: Song;
 
   constructor() {
-    console.log("constructed")
     let keys : string[];
     Storage.keys().then(keysObj => {
       keys = keysObj.keys
-      console.log(keys)
       keys = keys.sort((left,right) => Number(left) - Number(right))
       if(keys != null) {
         keys.forEach(key => {
-          console.log(key)
           Storage.get({ key: key }).then(val => {
             console.log(JSON.parse(val.value));
             if(val.value != null) {

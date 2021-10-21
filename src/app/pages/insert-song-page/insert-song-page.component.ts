@@ -64,9 +64,7 @@ export class InsertSongPageComponent implements OnInit {
     let maxLineLength = 0;
     lyricsArr.forEach(line => {
       let lineWordsCounter = 0;
-      line.split(" ").forEach(word => {
-        console.log(word.length)
-        console.log(word.trim().length)
+      line.replace(/\n|\r/g, " ").split(" ").forEach(word => {
         lineWordsCounter++;
         if(word.trim().length > wordLengthMax) {
           wordLengthMax = word.trim().length;
@@ -99,11 +97,12 @@ export class InsertSongPageComponent implements OnInit {
       if (line.trim().length && line.length != 0) {
         lyricsLines.push(
           {
-            text: line,
+            text: line.trim(),
             status: null,
             state: "pending"
           }
         )
+        console.log(lyricsLines)
       }
 
     });
